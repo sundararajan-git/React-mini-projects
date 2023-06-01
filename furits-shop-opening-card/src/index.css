@@ -4,6 +4,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: bolder;
   text-transform: capitalize;
+  scroll-behavior: smooth;
 }
 .container {
   display: flex;
@@ -13,6 +14,7 @@
 }
 .image img {
   height: 500px;
+  width: 300px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
@@ -106,4 +108,21 @@ button:hover {
   background-position: right center; /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
+}
+
+@media all and (max-width: 600px) {
+  .container {
+    overflow: scroll;
+    height: 100%;
+    width: 100%;
+    display: block;
+  }
+  .container::-webkit-scrollbar {
+    display: none;
+  }
+  #card,
+  .image img {
+    width: 100%;
+    border-radius: 0px 0px 0px 0px;
+  }
 }
