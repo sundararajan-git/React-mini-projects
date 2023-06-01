@@ -1,0 +1,60 @@
+.btnyellow {
+  background-image: linear-gradient(
+    to right,
+    #ff8008 0%,
+    #001510 51%,
+    #ff8008 100%
+  );
+}
+
+.btnred {
+  background-image: linear-gradient(
+    to right,
+    #eb3349 0%,
+    #001510 51%,
+    #eb3349 100%
+  );
+}
+
+.btnblue {
+  background-image: linear-gradient(
+    to right,
+    #06beb6 0%,
+    #001510 51%,
+    #06beb6 100%
+  );
+}
+
+.btngreen {
+  background-image: linear-gradient(
+    to right,
+    #00bf8f 0%,
+    #001510 51%,
+    #00bf8f 100%
+  );
+}
+.yellow {
+  background-color: hsl(33, 100%, 96%);
+}
+.blue {
+  background-color: rgb(230, 247, 247);
+}
+.green {
+  background-color: rgb(230, 248, 230);
+}
+.red {
+  background-color: rgb(247, 228, 228);
+}
+
+.r {
+  color: #7b1310;
+}
+.g {
+  color: #436f22;
+}
+.y {
+  color: #eeaf00;
+}
+.b {
+  color: #01b3a3;
+}
