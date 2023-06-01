@@ -74,7 +74,7 @@ class Content extends React.Component {
           </p>
           <pre>
             GRAND
-            <wbr /> OPENING
+            <wbr />       OPENING
           </pre>
           <p id="dec">Tasty furits shop</p>
           <address>
