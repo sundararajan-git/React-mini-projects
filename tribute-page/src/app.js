@@ -6,10 +6,12 @@ class App extends React.Component {
       <div className="page">
         <div className="container">
           <h1>Dr. Fidel Alejandro Castro Ruz</h1>
+          <br />
           <h4>
             A revolution is struggle to the Death between the Future and the
             Past
           </h4>
+          <br />
           <figure>
             <img
               src="https://c4.wallpaperflare.com/wallpaper/289/693/69/form-cuba-the-leader-the-leader-wallpaper-preview.jpg"
@@ -21,6 +23,7 @@ class App extends React.Component {
               as President from 1976 to 2008.
             </figcaption>
           </figure>
+          <br />
           <h3>Here's a time line of Castro's life:</h3>
           <ul>
             <p>
@@ -103,16 +106,19 @@ class App extends React.Component {
               <strong>2009</strong> - dies at the age of 95.
             </p>
           </ul>
+          <br />
           <blockquote>
             <p>
               "Borlaug's life and achievement are testimony to the far-reaching
               contribution that one man's towering intellect, persistence and
               scientific vision can make to human peace and progress."
             </p>
+            <br />
             <footer>
               <cite>Indian Prime Minister Manmohan Singh</cite>
             </footer>
           </blockquote>
+          <br />
           <h3>
             If you have time, you should read more about this incredible human
             being on his{" "}
