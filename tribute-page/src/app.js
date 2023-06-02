@@ -8,10 +8,10 @@ class App extends React.Component {
         <div className="container">
           <h1>Dr. Fidel Alejandro Castro Ruz</h1>
           <br />
-          <h4>
+          <h6>
             A revolution is struggle to the Death between the Future and the
             Past
-          </h4>
+          </h6>
           <br />
           <figure>
             <img
