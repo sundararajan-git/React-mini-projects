@@ -2,6 +2,7 @@ import React from "react";
 
 class App extends React.Component {
   render() {
+    console.log("rendering...");
     return (
       <div className="page">
         <div className="container">
@@ -122,7 +123,7 @@ class App extends React.Component {
           <h3>
             If you have time, you should read more about this incredible human
             being on his{" "}
-            <a href="https://en.wikipedia.org/wiki/Norman_Borlaug">
+            <a href="https://en.wikipedia.org/wiki/Fidel_Castro">
               Wikipedia entry
             </a>
             .
