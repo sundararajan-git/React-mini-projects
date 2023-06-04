@@ -14,8 +14,8 @@ export default function Timer() {
 
   // Milliseconds calculation
   const milliseconds = time % 100;
+  let interval;
   useEffect(() => {
-    let interval;
     if (isRuning) {
       interval = setInterval(() => {
         settime(time++);
@@ -24,26 +24,29 @@ export default function Timer() {
     return () => clearInterval(interval);
   }, [isRuning, time]);
   return (
-    <div>
-      <div>
+    <div className="container" v>
+      <h1>
         {hours}:{minutes.toString().padStart(2, "0")}:
         {seconds.toString().padStart(2, "0")}:
         {milliseconds.toString().padStart(2, "0")}
+      </h1>
+      <div id="btn">
+        <button
+          onClick={() => {
+            setRunning(!isRuning);
+          }}
+        >
+          {isRuning ? "Stop" : "Start"}
+        </button>
+        <button
+          onClick={() => {
+            setRunning(false);
+            settime(0);
+          }}
+        >
+          Reset
+        </button>
       </div>
-      <button
-        onClick={() => {
-          setRunning(!isRuning);
-        }}
-      >
-        {isRuning ? "Stop" : "Start"}
-      </button>
-      <button
-        onClick={() => {
-          settime(0);
-        }}
-      >
-        Reset
-      </button>
     </div>
   );
 }
