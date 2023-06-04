@@ -8,7 +8,7 @@ export default function Time() {
     }, 1000);
   });
   return (
-    <div>
+    <div className="container">
       <h1>{time.toLocaleTimeString()}</h1>
     </div>
   );
