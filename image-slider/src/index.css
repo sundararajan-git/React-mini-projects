@@ -1,4 +1,41 @@
 * {
   margin: 0;
   padding: 0;
+  background-color: black;
 }
+img{
+  width: 100%;
+  border-radius: 15px;
+  cursor: pointer;
+}
+img:hover{
+  box-shadow: 0px 0px 7px 7px grey;
+}
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 89vh;
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 1%;
+  /* border: 2px solid black; */
+}
+a{
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+  background-color: transparent;
+}
+.fa-chevron-left{
+  position: absolute;
+  top: 50%;
+  left: 15%;
+}
+.fa-chevron-right{
+  position: absolute;
+  top: 50%;
+  right: 15%;
+}
+
+
