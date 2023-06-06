@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
 export default function Calculator() {
+  
   const [num, setnum] = useState("");
   const [output, setoutput] = useState('');
-  
+
   //   ---- calcuate function
   function calc(fn) {
     // eslint-disable-next-line
