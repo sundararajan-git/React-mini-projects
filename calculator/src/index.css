@@ -27,10 +27,14 @@ body {
   text-align: end;
   padding-right: 20px;
 }
-.output span {
-  padding-right: 10px;
+.output input {
+  padding: 10PX;
   float: right;
+  background-color: transparent;
+  border: none;
   color: rgb(10, 248, 166);
+  text-align: end;
+  font-size: 20px;
 }
 .items {
   display: flex;

@@ -9,18 +9,20 @@ export default function Calculator() {
     return new Function("return " + fn)();
   }
   return (
-    <div>
+    <div> 
       <div className="container">
         <div className="output" id="top">
           <p id="output">{num ? num : "Calcuate..."}</p>
-          <span id="ope">{output}</span>
+          <input  id="ope" type="text" value={output}  disabled='disabled'/>
         </div>
         <br />
         <hr />
         <br />
         <div className="items">
           <div className="set" id="set1">
-            <button className="item" id="ac" onClick={(e) => setnum("")}>
+            <button className="item" id="ac" onClick={(e) => {
+              setoutput("")
+              setnum("")}}>
               AC
             </button>
             <button
@@ -173,8 +175,13 @@ export default function Calculator() {
               className="item"
               id="equal"
               onClick={(e) => {
+                try{
                 let out = calc(num);
                 setoutput(out);
+                }
+                catch(err){
+                  setoutput('Error..')
+                }
               }}
             >
               =
