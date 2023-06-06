@@ -5,6 +5,7 @@ export default function Calculator() {
   const [output, setoutput] = useState();
   //   ---- calcuate function
   function calc(fn) {
+    // eslint-disable-next-line
     return new Function("return " + fn)();
   }
   return (
