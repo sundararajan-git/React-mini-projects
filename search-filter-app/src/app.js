@@ -19,11 +19,13 @@ export default function App() {
     <div className='container'>
         <input type='text' placeholder='search...' onChange={handlechange}/><br></br>
         <div>
-            {users&&users.filter((val)=>{
+            {
+            // eslint-disable-next-line
+            users&&users.filter((val)=>{
                 if(input===''){
                     return val
                 }
-                else if(val.firstName.toLowerCase().includes(input.toLowerCase())){
+            else if(val.firstName.toLowerCase().includes(input.toLowerCase())){
                     return val
                 }
             })
