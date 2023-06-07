@@ -66,3 +66,18 @@ button{
 .hot{
     background-color: orangered;
 }
+@media all and (max-width:400px){
+    .container{
+        width: 50%;
+        height: 200px;
+    }
+    p{
+        width: 50%;
+        height: 80px;
+        margin-top: 10%;
+    }
+    span{
+        top: 20px;
+        font-size: 20px;
+    }
+}
