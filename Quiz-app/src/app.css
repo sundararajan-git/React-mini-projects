@@ -2,16 +2,100 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-weight: bolder;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 .green {
-  background-color: green;
+  border: 2px solid #0bda51;
+  color: black;
 }
 .red {
-  background-color: red;
+  border: 2px solid red;
+  color: black;
 }
 .container {
   display: block;
 }
+p {
+  color: royalblue;
+}
 .score {
   display: none;
+}
+.quiz {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+.container {
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+  width: 30%;
+  height: 60%;
+  box-shadow: 0px 0px 7px 7px grey;
+  background-color: whitesmoke;
+}
+.container > .p {
+  display: flex;
+  justify-content: center;
+  color: green;
+  align-items: center;
+  height: 100%;
+}
+.btns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.page {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 7%;
+}
+.page button {
+  cursor: pointer;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: gainsboro;
+}
+.page button:hover {
+  background-color: blue;
+  color: white;
+}
+.page > #sub {
+  background-color: gainsboro;
+  color: black;
+}
+.page > #sub:hover {
+  background-color: #0bda51;
+}
+.btns > button {
+  padding: 2px;
+  width: 70%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btns > button:hover {
+  transform: scale(1.05);
+}
+@media all and (max-width: 600px) {
+  .container {
+    width: 80%;
+    height: 40%;
+  }
 }

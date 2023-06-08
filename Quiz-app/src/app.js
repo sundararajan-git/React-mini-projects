@@ -113,21 +113,23 @@ export default function App() {
             onClick={(e) => handlepagePrev(e)}
             disabled={page === 0 ? true : false}
           >
-            {"<prev"}
+            {"Prev"}
           </button>
           <button
             onClick={(e) => handlepageNext(e)}
             disabled={page === quiz.length - 1 ? true : false}
           >
-            {"next>"}
+            {"Next"}
           </button>
           {page === quiz.length - 1 && (
-            <button onClick={showScore}>Submit</button>
+            <button onClick={showScore} id="sub">
+              Submit
+            </button>
           )}
         </div>
       </div>
       <div className={display ? "container" : "score"}>
-        <p>
+        <p className="p">
           Your Score {score}/{quiz.length}
         </p>
       </div>
