@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.green {
+  background-color: green;
+}
+.red {
+  background-color: red;
+}
+.container {
+  display: block;
+}
+.score {
+  display: none;
+}
