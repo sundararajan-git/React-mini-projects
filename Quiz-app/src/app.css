@@ -50,7 +50,7 @@ p {
 .container > .p {
   display: flex;
   justify-content: center;
-  color: green;
+  color: blue;
   align-items: center;
   height: 100%;
 }
