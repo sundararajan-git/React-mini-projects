@@ -19,7 +19,7 @@ export default function App() {
     localStorage.setItem("curd-operation", JSON.stringify(filterd));
   };
   return (
-    <div>
+    <div className="container">
       <Form getdata={getdata} />
       <Table pass={pass} deleteHandle={deleteHandle} />
     </div>

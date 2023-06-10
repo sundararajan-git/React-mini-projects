@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./form.css";
 
 export default function Form({ getdata }) {
   const [input, setinput] = useState({ username: "", userage: "" });
@@ -8,9 +9,10 @@ export default function Form({ getdata }) {
     setinput({ username: "", userage: "" });
   };
   return (
-    <div>
+    <div className="form">
       <form>
         <label htmlFor="name">Name</label>
+        <br />
         <input
           id="name"
           type="text"
@@ -22,6 +24,7 @@ export default function Form({ getdata }) {
         />
         <br />
         <label htmlFor="age">Age</label>
+        <br />
         <input
           id="age"
           type="text"
@@ -29,6 +32,7 @@ export default function Form({ getdata }) {
           onChange={(e) => setinput({ ...input, userage: e.target.value })}
           name="age"
         />
+        <br />
         <br />
         <button onClick={submit}>Submit</button>
       </form>
