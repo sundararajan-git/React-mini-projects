@@ -17,7 +17,7 @@
   box-shadow: 0px 0px 7px 7px gray;
   border-radius: 5px;
   width: 280px;
-  height: 350px;
+  height: 370px;
 }
 button {
   color: black;
@@ -69,4 +69,26 @@ pre {
 #logout-btn:hover {
   background-color: red;
   color: white;
+}
+img {
+  width: 30px;
+  object-fit: contain;
+  background-color: transparent;
+  border-radius: 5px;
+}
+#g-btn {
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 30%;
+  color: black;
+  width: 40%;
+  padding-left: 5px;
+}
+span {
+  position: relative;
+  color: black;
+  top: -10px;
+  left: 10px;
 }

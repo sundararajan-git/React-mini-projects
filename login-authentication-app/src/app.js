@@ -1,6 +1,16 @@
 import React, { useState } from "react";
-
+import "./App.css";
+import { auth, googleProvider } from "./firebase";
+import { signInWithPopup } from "firebase/auth";
 const App = () => {
+  // eslint-disable-next-line
+  const [loginuser, setLoginuser] = useState(null);
+  const googleLogin = () => {
+    signInWithPopup(auth, googleProvider).then((data) => {
+      setLoginuser(data.user.email);
+      console.log(data.user.email);
+    });
+  };
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -21,7 +31,7 @@ const App = () => {
   return (
     <div className="body">
       <div className="container">
-        {login ? (
+        {login || loginuser ? (
           <div className="loginSuccess">
             <p>Login Succesfully !</p>
             <button onClick={logout} id="logout-btn">
@@ -81,10 +91,11 @@ const App = () => {
             ) : (
               <pre> </pre>
             )}
-            <hr />
             <div>
-              <button>Google</button>
-              <button>Facebook</button>
+              <div onClick={googleLogin} id="g-btn" role="button">
+                <img src="https://banner2.cleanpng.com/20180521/ers/kisspng-google-logo-5b02bbe1d5c6e0.2384399715269058258756.jpg"></img>
+                <span>Google</span>
+              </div>
             </div>
             <br />
             <button type="submit" id="login-btn" onClick={clickHandle}>
