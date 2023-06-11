@@ -9,7 +9,6 @@ export default function Table({ pass, deleteHandle }) {
           <tr>
             <td>Name</td>
             <td>Age</td>
-            <td>Edit</td>
             <td>Delete</td>
           </tr>
         </thead>
@@ -20,9 +19,6 @@ export default function Table({ pass, deleteHandle }) {
                 <tr key={index}>
                   <td>{data.username}</td>
                   <td>{data.userage}</td>
-                  <td>
-                    <button onClick={null}>Edit</button>
-                  </td>
                   <td>
                     <button onClick={() => deleteHandle(index)}>Delete</button>
                   </td>

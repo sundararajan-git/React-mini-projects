@@ -7,7 +7,6 @@ export default function App() {
   const [pass, setpass] = useState(
     JSON.parse(localStorage.getItem("curd-operation") || [])
   );
-  const [edit, setedit] = useState();
   const getdata = (arr) => {
     const data = [...pass, arr];
     setpass(data);
