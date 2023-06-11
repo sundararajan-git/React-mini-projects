@@ -36,7 +36,7 @@ export default function Slider() {
         <i className="fa-solid fa-chevron-left fa-2xl"> </i>
       </a>
       <div className="container">
-        <img src={image[num]}></img>
+        <img src={image[num]} className={`i${num}`}></img>
       </div>
       <a onClick={forward} id="right">
         <i className="fa-solid fa-chevron-right fa-2xl"></i>
