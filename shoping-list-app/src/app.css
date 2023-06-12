@@ -71,7 +71,6 @@ p {
   padding: 10px;
 }
 .item {
-  padding-right: 50%;
 }
 label {
 }
@@ -81,4 +80,6 @@ label {
 }
 .fa-trash {
   color: red;
+}
+#numhandle {
 }

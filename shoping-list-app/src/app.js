@@ -36,7 +36,9 @@ const App = () => {
   };
   const decrement = (i) => {
     setItem([...list, list[i].itemnum > 0 ? list[i].itemnum-- : null]);
-    settotal(total - 1);
+    if (list[i].itemnum > 0) {
+      settotal(total - 1);
+    }
   };
   return (
     <div className="body">
@@ -72,13 +74,17 @@ const App = () => {
                       <button onClick={() => increment(index)}>
                         <i className="fa-solid fa-chevron-right"></i>
                       </button>
+                      <span> </span>
+                      <span> </span>
+                      <span> </span>
+                      <span> </span>
+                      <button
+                        type="button"
+                        onClick={(e) => deleteHandle(e, index)}
+                      >
+                        <i className="fa-solid fa-trash"></i>
+                      </button>
                     </div>
-                    <button
-                      typeof="button"
-                      onClick={(e) => deleteHandle(e, index)}
-                    >
-                      <i className="fa-solid fa-trash"></i>
-                    </button>
                   </div>
                 );
               })
