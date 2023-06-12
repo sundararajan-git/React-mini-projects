@@ -20,7 +20,9 @@ export default function Table({ pass, deleteHandle }) {
                   <td>{data.username}</td>
                   <td>{data.userage}</td>
                   <td>
-                    <button onClick={() => deleteHandle(index)}>Delete</button>
+                    <button onClick={() => deleteHandle(data.id)}>
+                      Delete
+                    </button>
                   </td>
                 </tr>
               );
