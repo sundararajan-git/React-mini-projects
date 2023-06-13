@@ -2,23 +2,35 @@ import React, { useState } from "react";
 import "./app.css";
 
 const App = () => {
-  const [list, setList] = useState([]);
-  const [item, setItem] = useState({ item: "", id: 1, itemnum: 0 });
+  const [list, setList] = useState(
+    [JSON.parse(localStorage.getItem("shoping-list"))] || null
+  );
+  const [item, setItem] = useState({
+    item: "",
+    id: 0,
+    itemnum: 1,
+    checked: false,
+  });
   const [click, setClick] = useState(false);
   const [total, settotal] = useState(0);
   const addItem = (e) => {
-    setItem({ ...item, item: e.target.value });
+    const add = { ...item, item: e.target.value };
+    setItem(add);
+    localStorage.setItem("shoping-list", JSON.stringify(add));
   };
   const addClick = () => {
     if (item.item) {
-      setItem({ ...item, id: item.id + 1 });
-      setList([...list, item]);
+      setItem({ ...item, id: item.id++ });
+      const add = [...list, item];
+      setList(add);
       setClick(true);
       setItem({ ...item, item: "" });
-      localStorage.setItem("shoping-list", JSON.stringify(list));
+      settotal(total + 1);
+      localStorage.setItem("shoping-list", JSON.stringify(add));
     }
   };
-  const deleteHandle = (e, i) => {
+  const deleteHandle = (e, i, itemnum) => {
+    settotal(total - itemnum);
     let filtered = list.filter((item, index) => {
       return i !== index;
     });
@@ -26,19 +38,28 @@ const App = () => {
     localStorage.setItem("shoping-list", JSON.stringify(filtered));
   };
   const increment = (i) => {
-    setItem([...list, list[i].itemnum++]);
+    const inc = [...list, list[i].itemnum++];
+    setItem(inc);
     // eslint-disable-next-line
-    list.map((item, index) => {
+    const total = list.map((item, index) => {
       if (i === index) {
         settotal(total + 1);
       }
     });
+    localStorage.setItem("shoping-list", JSON.stringify(inc, total));
   };
   const decrement = (i) => {
-    setItem([...list, list[i].itemnum > 0 ? list[i].itemnum-- : null]);
-    if (list[i].itemnum > 0) {
+    if (list[i].itemnum >= 1) {
       settotal(total - 1);
     }
+    setItem([...list, list[i].itemnum > 0 ? list[i].itemnum-- : null]);
+  };
+
+  const checkedHandle = (id) => {
+    const checkbox = list.map((item, index) => {
+      return item.id === id ? { ...item, checked: !item.checked } : item;
+    });
+    setList(checkbox);
   };
   return (
     <div className="body">
@@ -56,21 +77,33 @@ const App = () => {
           </button>
         </div>
         <div className="lists">
-          {click
+          {click || list
             ? list &&
               list.map((item, index) => {
                 return (
                   <div key={item.id} className="list">
                     <div className="item">
-                      <input type="radio" id={`radio${index}`} />
+                      <input
+                        type="checkbox"
+                        id={`radio${index}`}
+                        name={`r${index}`}
+                        onClick={() => checkedHandle(item.id)}
+                        checked={item.checked}
+                      />
                       <span> </span>
-                      <label htmlFor={`radio${index}`}>{item.item}</label>
+                      <label
+                        htmlFor={`radio${index}`}
+                        name={`r${index}`}
+                        className={item.checked ? "strike" : "normal"}
+                      >
+                        {item.item}
+                      </label>
                     </div>
                     <div id="numhandle">
                       <button onClick={() => decrement(index)}>
                         <i className="fa-solid fa-chevron-left"></i>
                       </button>
-                      {item.itemnum}
+                      <span>{item.itemnum}</span>
                       <button onClick={() => increment(index)}>
                         <i className="fa-solid fa-chevron-right"></i>
                       </button>
@@ -80,7 +113,7 @@ const App = () => {
                       <span> </span>
                       <button
                         type="button"
-                        onClick={(e) => deleteHandle(e, index)}
+                        onClick={(e) => deleteHandle(e, index, item.itemnum)}
                       >
                         <i className="fa-solid fa-trash"></i>
                       </button>
