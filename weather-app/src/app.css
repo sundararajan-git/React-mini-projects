@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: bolder;
+  font-size: 15px;
+}
+#container {
+  height: 100vh;
+  width: 100vw;
+  padding: 10%;
+}
+.clouds {
+  background-image: url("https://i.pinimg.com/564x/88/48/ec/8848ec300e04b0133c669c85d7f5a6ec.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.clear {
+  background-image: url("https://wallpapersmug.com/download/1080x2160/1f027d/mountains-castle-sunset-horizon-art.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.haze {
+  background-image: url("https://i.pinimg.com/564x/cf/17/37/cf173710c222ee999c0ebc018ebdf88a.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.rain {
+  background-image: url("https://i.pinimg.com/564x/7f/4a/0d/7f4a0d538e673ee0608daccf29b3b20f.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.snow {
+  background-image: url("https://i.pinimg.com/564x/28/3b/0c/283b0ca367c627608a01093053534c7a.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.wind {
+  background-image: url("https://i.pinimg.com/564x/d0/8e/a6/d08ea62e666ec2564456d1f432d448a0.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.header input {
+  width: 70%;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+}
+.header button {
+  margin-left: 5%;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+}
+.content {
+  margin-top: 10%;
+  color: white;
+}
+.items {
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+  gap: 20px;
+}
+.items p {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 20px;
+}
