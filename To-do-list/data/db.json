@@ -2,17 +2,17 @@
   "item": [
     {
       "id": 1,
-      "item": "running",
+      "item": "shoping",
       "checked": false
     },
     {
       "id": 2,
-      "item": "writing",
+      "item": "runing",
       "checked": false
     },
     {
       "id": 3,
-      "item": "watch movie",
+      "item": "shooting",
       "checked": false
     }
   ]

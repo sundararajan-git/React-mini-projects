@@ -58,24 +58,37 @@ const List = () => {
       return id === item.id ? { ...item, checked: !item.checked } : item;
     });
     setList(check);
+    const add = check.filter((item) => item.id === id);
     const patchOption = {
       method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: await JSON.stringify({ checked: add[0].checked }),
     };
     const path = `${API_URL}/${id}`;
     const result = await apiRequest(path, patchOption);
     setFetchErr(result);
   };
   return (
-    <div>
-      <input
-        type="text"
-        name="add-item"
-        value={item.item}
-        placeholder=" Add item..."
-        onChange={addItemHandle}
-      />
-      <button onClick={addListHandle}>ADD</button>
-      <Item list={list} deleteHandle={deleteHandle} checkhandle={checkhandle} />
+    <div className="list">
+      <div className="headers">
+        <input
+          type="text"
+          name="add-item"
+          value={item.item}
+          placeholder=" Add item..."
+          onChange={addItemHandle}
+        />
+        <button onClick={addListHandle}>ADD</button>
+      </div>
+      <div>
+        <Item
+          list={list}
+          deleteHandle={deleteHandle}
+          checkhandle={checkhandle}
+        />
+      </div>
     </div>
   );
 };

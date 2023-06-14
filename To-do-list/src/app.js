@@ -1,9 +1,10 @@
 import React from "react";
 import List from "./list";
+import "./app.css";
 
 const App = () => {
   return (
-    <div>
+    <div className="container">
       <List />
     </div>
   );
