@@ -11,6 +11,7 @@ const App = () => {
   const [des, setDes] = useState("");
   const [Err, setErr] = useState(null);
   const [isloading, setLoading] = useState(null);
+  const date = new Date();
   const inputHandle = (e) => {
     setSearch(e.target.value);
   };
@@ -26,9 +27,9 @@ const App = () => {
       setTemp((jsonResponse.main.temp - 273.15).toFixed(2));
       setMain(jsonResponse.weather[0].main);
       setDes(jsonResponse.weather[0].description);
+      setErr(null);
     } catch (err) {
       setErr(err);
-      console.log(err);
     } finally {
       setLoading(false);
     }
@@ -64,7 +65,7 @@ const App = () => {
       </div>
       <div className="content">
         {isloading ? (
-          <span id="s">loading....</span>
+          <span>loading....</span>
         ) : (
           <div className="report">
             {Err !== null ? (
@@ -73,10 +74,34 @@ const App = () => {
               <div className="list">
                 {typeof result.main !== "undefined" ? (
                   <div className="items">
-                    <p>{name}</p>
-                    <p>{temp}°C</p>
-                    <p>{main}</p>
-                    <p>{des}</p>
+                    <p>
+                      <i className="fa-solid fa-location-crosshairs"></i>
+                      {name}
+                    </p>
+                    <p>
+                      <i className="fa-solid fa-temperature-three-quarters"></i>
+                      {temp}°C
+                    </p>
+                    <p>
+                      <i
+                        className={
+                          main === "Clouds"
+                            ? " fa-solid fa-cloud"
+                            : main === "Clear"
+                            ? "fa-solid fa-sun"
+                            : main === "Haze"
+                            ? "fa-solid fa-smog"
+                            : main === "Rain"
+                            ? "fa-solid fa-cloud-rain"
+                            : main === "Snow"
+                            ? "fa-solid fa-snowflake"
+                            : main === "Wind"
+                            ? "fa-solid fa-wind"
+                            : null
+                        }
+                      ></i>
+                      {main}
+                    </p>
                   </div>
                 ) : null}
               </div>
@@ -84,6 +109,7 @@ const App = () => {
           </div>
         )}
       </div>
+      <p id="p">{date.toLocaleDateString()}</p>
     </div>
   );
 };
