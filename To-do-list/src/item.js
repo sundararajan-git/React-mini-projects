@@ -1,6 +1,6 @@
 import React from "react";
 
-const Item = ({ list, deleteHandle, checkhandle }) => {
+const Item = ({ list, deleteHandle, checkhandle, EditHandle }) => {
   return (
     <div className="items">
       {list &&
@@ -14,12 +14,12 @@ const Item = ({ list, deleteHandle, checkhandle }) => {
                 id={`c${item.id}`}
                 className={item.checked ? "checked" : "notchecked"}
               />
-              <span htmlFor={`c${item.id}`}>{item.item}</span>
+              <label htmlFor={`c${item.id}`}>{item.item}</label>
               <button onClick={() => deleteHandle(item.id)} className="btns">
-                Delete
+                <i className="fa-solid fa-trash fa-xl"></i>
               </button>
-              <button onClick={() => deleteHandle(item.id)} className="btns">
-                Delete
+              <button onClick={() => EditHandle(item.id)} className="btns">
+                <i className="fa-solid fa-pen-to-square fa-xl"></i>
               </button>
             </div>
           );

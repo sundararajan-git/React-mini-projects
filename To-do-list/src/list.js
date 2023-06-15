@@ -23,12 +23,11 @@ const List = () => {
     };
     (async () => await fetchData())();
   }, []);
-  const addItemHandle = (e) => {
+  const addItemHandle = (e, id) => {
     setItem({ ...item, item: e.target.value });
   };
   const addListHandle = async () => {
     setItem({ ...item, id: item.id + 1 });
-    console.log(item);
     setList([...list, item]);
     setItem({ ...item, item: "" });
     const postOption = {
@@ -70,6 +69,13 @@ const List = () => {
     const result = await apiRequest(path, patchOption);
     setFetchErr(result);
   };
+  const EditHandle = (id) => {
+    const edit = list.map((item) => {
+      if (item.id === id) {
+        console.log(id);
+      }
+    });
+  };
   return (
     <div className="list">
       <div className="headers">
@@ -78,15 +84,18 @@ const List = () => {
           name="add-item"
           value={item.item}
           placeholder=" Add item..."
-          onChange={addItemHandle}
+          onChange={(e) => addItemHandle(e)}
         />
-        <button onClick={addListHandle}>ADD</button>
+        <button onClick={addListHandle}>
+          <i className="fa-solid fa-plus"></i>
+        </button>
       </div>
       <div>
         <Item
           list={list}
           deleteHandle={deleteHandle}
           checkhandle={checkhandle}
+          EditHandle={EditHandle}
         />
       </div>
     </div>

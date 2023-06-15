@@ -2,10 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -54,16 +55,15 @@
   float: right;
   border: none;
   padding: 5px;
-  border-radius: 5px;
-  background-color: red;
-  color: white;
+  background-color: transparent;
+  color: red;
   cursor: pointer;
 }
-span {
+label {
   margin-left: 10px;
   cursor: pointer;
 }
-.checked ~ span {
+.checked ~ label {
   text-decoration-line: line-through;
 }
 .notchecked {

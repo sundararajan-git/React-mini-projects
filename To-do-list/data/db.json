@@ -1,18 +1,13 @@
 {
   "item": [
     {
-      "id": 1,
-      "item": "shoping",
-      "checked": false
-    },
-    {
       "id": 2,
       "item": "runing",
       "checked": false
     },
     {
       "id": 3,
-      "item": "shooting",
+      "item": "writing",
       "checked": false
     }
   ]
