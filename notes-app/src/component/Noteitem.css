@@ -1,0 +1,13 @@
+.item {
+  background-color: yellow;
+  border-radius: 10px;
+  padding: 10px;
+  min-height: 170px;
+  height: 200px;
+}
+.item p {
+  height: 90%;
+}
+.item button {
+  float: right;
+}
