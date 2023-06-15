@@ -6,8 +6,9 @@ const List = () => {
   const API_URL = " http://localhost:3600/item";
   const [list, setList] = useState([]);
   const [item, setItem] = useState({ id: 0, item: "", checked: false });
+  // eslint-disable-next-lin
   const [fetchErr, setFetchErr] = useState(null);
-
+  const [edittext, setEdittext] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,22 +24,42 @@ const List = () => {
     };
     (async () => await fetchData())();
   }, []);
-  const addItemHandle = (e, id) => {
-    setItem({ ...item, item: e.target.value });
+  const addItemHandle = (e) => {
+    setItem({ ...item, item: e.target.value, id: item.length - 1 });
   };
   const addListHandle = async () => {
-    setItem({ ...item, id: item.id + 1 });
-    setList([...list, item]);
+    if (edittext) {
+      const update = list.map((data) => {
+        return data.id === edittext.id ? { ...data, item: item.item } : data;
+      });
+      setList(update);
+      const add = update.filter((item) => item.id === edittext.id);
+      const patchOption = {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: await JSON.stringify({ item: add[0].item }),
+      };
+      const path = `${API_URL}/${edittext.id}`;
+      const result = await apiRequest(path, patchOption);
+      setFetchErr(result);
+      setEdittext(null);
+    } else {
+      setItem({ ...item });
+      setList([...list, item]);
+      setEdittext(null);
+      const postOption = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: await JSON.stringify(item),
+      };
+      const result = await apiRequest(API_URL, postOption);
+      setFetchErr(result);
+    }
     setItem({ ...item, item: "" });
-    const postOption = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: await JSON.stringify(item),
-    };
-    const result = await apiRequest(API_URL, postOption);
-    setFetchErr(result);
   };
   const deleteHandle = async (id) => {
     const filterd = list.filter((item) => {
@@ -69,13 +90,11 @@ const List = () => {
     const result = await apiRequest(path, patchOption);
     setFetchErr(result);
   };
-  const EditHandle = (id) => {
-    const edit = list.map((item) => {
-      if (item.id === id) {
-        console.log(id);
-      }
-    });
+  const editHandle = (item) => {
+    setEdittext(item);
+    setItem({ ...item, item: item.item });
   };
+
   return (
     <div className="list">
       <div className="headers">
@@ -87,6 +106,7 @@ const List = () => {
           onChange={(e) => addItemHandle(e)}
         />
         <button onClick={addListHandle}>
+          {/* <i className="fa-solid fa-wrench"></i> */}
           <i className="fa-solid fa-plus"></i>
         </button>
       </div>
@@ -95,7 +115,7 @@ const List = () => {
           list={list}
           deleteHandle={deleteHandle}
           checkhandle={checkhandle}
-          EditHandle={EditHandle}
+          editHandle={editHandle}
         />
       </div>
     </div>

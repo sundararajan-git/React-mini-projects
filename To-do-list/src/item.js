@@ -1,6 +1,12 @@
 import React from "react";
 
-const Item = ({ list, deleteHandle, checkhandle, EditHandle }) => {
+const Item = ({ list, deleteHandle, checkhandle, editHandle }) => {
+  const getitemHandle = (id) => {
+    const getitem = list.find((item) => {
+      return item.id === id;
+    });
+    editHandle(getitem);
+  };
   return (
     <div className="items">
       {list &&
@@ -18,7 +24,7 @@ const Item = ({ list, deleteHandle, checkhandle, EditHandle }) => {
               <button onClick={() => deleteHandle(item.id)} className="btns">
                 <i className="fa-solid fa-trash fa-xl"></i>
               </button>
-              <button onClick={() => EditHandle(item.id)} className="btns">
+              <button onClick={() => getitemHandle(item.id)} className="btns">
                 <i className="fa-solid fa-pen-to-square fa-xl"></i>
               </button>
             </div>
