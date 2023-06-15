@@ -1,7 +1,7 @@
 import React from "react";
 import "./table.css";
 
-export default function Table({ pass, deleteHandle }) {
+export default function Table({ pass, deleteHandle, editHandle }) {
   return (
     <div className="table">
       <table>
@@ -9,6 +9,7 @@ export default function Table({ pass, deleteHandle }) {
           <tr>
             <td>Name</td>
             <td>Age</td>
+            <td>Edit</td>
             <td>Delete</td>
           </tr>
         </thead>
@@ -19,6 +20,9 @@ export default function Table({ pass, deleteHandle }) {
                 <tr key={index}>
                   <td>{data.username}</td>
                   <td>{data.userage}</td>
+                  <td>
+                    <button onClick={() => editHandle(data.id)}>Edit</button>
+                  </td>
                   <td>
                     <button onClick={() => deleteHandle(data.id)}>
                       Delete

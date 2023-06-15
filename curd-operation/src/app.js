@@ -3,13 +3,14 @@ import "./app.css";
 import Form from "./form";
 import Table from "./table";
 import api from "./apiRequest";
+import Edit from "./Edit";
 
 export default function App() {
   const ADD_URL = "http://localhost:8000/items";
   const [pass, setpass] = useState([]);
   const [fetchError, setFetchError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [edit, setEdit] = useState(null);
   useEffect(() => {
     const fetechItems = async () => {
       try {
@@ -52,13 +53,38 @@ export default function App() {
     const result = await api(reqUrl, deleteOption);
     if (result) setFetchError(result);
   };
+  const editHandle = (id) => {
+    const out = pass.find((item) => {
+      return item.id === id;
+    });
+    setEdit(out);
+  };
+  const updateHandle = (data) => {
+    console.log(data);
+    const update = pass.map((item) => {
+      return item.id === data.id
+        ? {
+            ...pass,
+            username: data.username,
+            userage: data.userage,
+            id: data.id,
+          }
+        : item;
+    });
+    setpass(update);
+  };
   return (
     <div className="container">
-      <Form getdata={getdata} />
+      {/* {edit ? <Edit edit={edit} /> :  */}
+      <Form getdata={getdata} edit={edit} updateHandle={updateHandle} />
       {isLoading && <p>Loading....</p>}
       {fetchError && <p>{`Error is ${fetchError}`}</p>}
       {!isLoading && !fetchError ? (
-        <Table pass={pass} deleteHandle={deleteHandle} />
+        <Table
+          pass={pass}
+          deleteHandle={deleteHandle}
+          editHandle={editHandle}
+        />
       ) : null}
     </div>
   );

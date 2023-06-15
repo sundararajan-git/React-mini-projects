@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./form.css";
 
-export default function Form({ getdata }) {
+export default function Form({ getdata, edit, updateHandle }) {
   const [input, setinput] = useState({ username: "", userage: "", id: 0 });
+  useEffect(() => {
+    if (edit) {
+      setinput({ username: edit.username, userage: edit.userage, id: edit.id });
+    }
+  }, [edit]);
   const submit = (e) => {
     e.preventDefault();
     setinput({ ...input, id: input.id + 1 });
-    if (input) {
+    if (input && !edit) {
       getdata(input);
+    } else {
+      updateHandle(input);
     }
     setinput({ username: "", userage: "" });
   };
@@ -37,7 +44,7 @@ export default function Form({ getdata }) {
         />
         <br />
         <br />
-        <button onClick={submit}>Submit</button>
+        <button onClick={submit}>{edit ? "Update" : "Submit"}</button>
       </form>
     </div>
   );
