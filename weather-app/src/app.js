@@ -11,9 +11,11 @@ const App = () => {
   const [des, setDes] = useState("");
   const [Err, setErr] = useState(null);
   const [isloading, setLoading] = useState(null);
+  const [text, setText] = useState(null);
   const date = new Date();
   const inputHandle = (e) => {
     setSearch(e.target.value);
+    setText(null);
   };
   const searchHandle = async () => {
     setLoading(true);
@@ -24,10 +26,12 @@ const App = () => {
       const jsonResponse = await response.json();
       setResult(jsonResponse);
       setName(jsonResponse.name);
+      setText(jsonResponse.name);
       setTemp((jsonResponse.main.temp - 273.15).toFixed(2));
       setMain(jsonResponse.weather[0].main);
       setDes(jsonResponse.weather[0].description);
       setErr(null);
+      setText("");
     } catch (err) {
       setErr(err);
     } finally {
@@ -58,6 +62,7 @@ const App = () => {
           type="text"
           placeholder="Enter your Location.."
           onChange={inputHandle}
+          value={text}
         />
         <button type="button" onClick={searchHandle}>
           Search
