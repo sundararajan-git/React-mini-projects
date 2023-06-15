@@ -3,14 +3,13 @@ import "./app.css";
 import Form from "./form";
 import Table from "./table";
 import api from "./apiRequest";
-import Edit from "./Edit";
 
 export default function App() {
   const ADD_URL = "http://localhost:8000/items";
   const [pass, setpass] = useState([]);
   const [fetchError, setFetchError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [edit, setEdit] = useState(null);
+  const [getitem, setGetitem] = useState(null);
   useEffect(() => {
     const fetechItems = async () => {
       try {
@@ -54,29 +53,34 @@ export default function App() {
     if (result) setFetchError(result);
   };
   const editHandle = (id) => {
-    const out = pass.find((item) => {
-      return item.id === id;
-    });
-    setEdit(out);
+    const getdata = pass.find((item) => item.id === id);
+    setGetitem(getdata);
   };
-  const updateHandle = (data) => {
-    console.log(data);
+  const updateHandle = async (input) => {
     const update = pass.map((item) => {
-      return item.id === data.id
-        ? {
-            ...pass,
-            username: data.username,
-            userage: data.userage,
-            id: data.id,
-          }
+      return item.id === getitem.id
+        ? { ...item, username: input.username, userage: input.userage }
         : item;
     });
     setpass(update);
+    const add = update.filter((item) => item.id === getitem.id);
+    const patchOption = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: await JSON.stringify({
+        username: add[0].username,
+        userage: add[0].userage,
+      }),
+    };
+    const path = `${ADD_URL}/${getitem.id}`;
+    const result = await api(path, patchOption);
+    if (result) setFetchError(result);
   };
   return (
     <div className="container">
-      {/* {edit ? <Edit edit={edit} /> :  */}
-      <Form getdata={getdata} edit={edit} updateHandle={updateHandle} />
+      <Form getdata={getdata} getitem={getitem} updateHandle={updateHandle} />
       {isLoading && <p>Loading....</p>}
       {fetchError && <p>{`Error is ${fetchError}`}</p>}
       {!isLoading && !fetchError ? (
