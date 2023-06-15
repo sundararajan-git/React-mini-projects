@@ -43,6 +43,14 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.default {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(255, 0, 95, 1) 100%
+  );
+}
 .header {
   width: 100%;
   display: flex;
@@ -84,12 +92,17 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 20px;
 }
+.p {
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+}
 #p {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  height: 80%;
-  color: red;
+  height: 70%;
+  color: white;
   z-index: 9999;
 }
 i {

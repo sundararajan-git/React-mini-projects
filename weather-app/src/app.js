@@ -53,7 +53,7 @@ const App = () => {
           ? "snow"
           : main === "Wind"
           ? "wind"
-          : null
+          : "default"
       }
       id="container"
     >
@@ -69,6 +69,7 @@ const App = () => {
         </button>
       </div>
       <div className="content">
+        <h2 className="p">Weather App</h2>
         {isloading ? (
           <span>loading....</span>
         ) : (
