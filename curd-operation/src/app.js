@@ -10,6 +10,7 @@ export default function App() {
   const [fetchError, setFetchError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [getitem, setGetitem] = useState(null);
+  const [update, setUpdate] = useState(false);
   useEffect(() => {
     const fetechItems = async () => {
       try {
@@ -55,6 +56,7 @@ export default function App() {
   const editHandle = (id) => {
     const getdata = pass.find((item) => item.id === id);
     setGetitem(getdata);
+    setUpdate(true);
   };
   const updateHandle = async (input) => {
     const update = pass.map((item) => {
@@ -80,7 +82,13 @@ export default function App() {
   };
   return (
     <div className="container">
-      <Form getdata={getdata} getitem={getitem} updateHandle={updateHandle} />
+      <Form
+        getdata={getdata}
+        getitem={getitem}
+        update={update}
+        setUpdate={setUpdate}
+        updateHandle={updateHandle}
+      />
       {isLoading && <p>Loading....</p>}
       {fetchError && <p>{`Error is ${fetchError}`}</p>}
       {!isLoading && !fetchError ? (
