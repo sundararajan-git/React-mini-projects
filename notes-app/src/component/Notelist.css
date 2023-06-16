@@ -9,7 +9,7 @@
   align-items: center;
 }
 .add {
-  background-color: aqua;
+  background-color: white;
   min-height: 170px;
   height: 200px;
   border-radius: 10px;
@@ -20,9 +20,16 @@
 }
 .add textarea {
   border: none;
+  outline: none;
   background-color: transparent;
   padding: 5px;
 }
 .add button {
   align-self: flex-end;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: red;
+  cursor: pointer;
 }

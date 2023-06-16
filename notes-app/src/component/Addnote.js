@@ -18,7 +18,7 @@ const Addnote = ({ addHandle }) => {
         onChange={addnote}
         value={note.note}
       ></textarea>
-      <button onClick={clickHandle}>submit</button>
+      <button onClick={clickHandle}>Submit</button>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Noteitem from "./Noteitem";
 import "./Notelist.css";
 import Addnote from "./Addnote";
@@ -6,14 +6,23 @@ import Addnote from "./Addnote";
 const Notelist = () => {
   const [notelist, setNoteList] = useState([]);
   const [filter, setFilter] = useState("");
+  useEffect(() => {
+    const list = JSON.parse(localStorage.getItem("notes"));
+    if (list) {
+      setNoteList(list);
+    }
+  }, []);
   const addHandle = (data) => {
-    setNoteList([...notelist, data]);
+    const out = [...notelist, data];
+    setNoteList(out);
+    localStorage.setItem("notes", JSON.stringify(out));
   };
   const deleteHandle = (id) => {
     const filtered = notelist.filter((item) => {
       return id !== item.id;
     });
     setNoteList(filtered);
+    localStorage.setItem("notes", JSON.stringify(filtered));
   };
 
   const filterHandle = (e) => {

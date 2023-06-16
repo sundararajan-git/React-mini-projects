@@ -6,8 +6,10 @@ const Noteitem = ({ id, note, deleteHandle }) => {
   return (
     <div className="item">
       <p>{note}</p>
-      <span>{date.toLocaleDateString()}</span>
-      <button onClick={() => deleteHandle(id)}>Delete</button>
+      <div>
+        <span>{date.toLocaleDateString()}</span>
+        <button onClick={() => deleteHandle(id)}>Delete</button>
+      </div>
     </div>
   );
 };
