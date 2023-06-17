@@ -1,5 +1,32 @@
 ul {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   gap: 10px;
   list-style: none;
+  height: 60px;
+}
+ul li {
+  padding: 10px;
+}
+ul li:hover {
+  background-color: rgba(2, 0, 36, 1);
+  border-radius: 5px;
+  cursor: pointer;
+}
+nav {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 255, 218, 1) 100%
+  );
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+li:active {
 }
