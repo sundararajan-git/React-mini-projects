@@ -1,25 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const Post = ({ postHandle }) => {
-  const [inputValue, setInputValue] = useState({ id: 0, title: "", body: "" });
-  const passPost = () => {
-    setInputValue({ ...inputValue, id: inputValue.id++ });
-    postHandle(inputValue);
-    setInputValue({ ...inputValue, title: "", body: "" });
+const Post = ({ postHandle, passEdit }) => {
+  const location = useNavigate();
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const passPost = (e) => {
+    e.preventDefault();
+    postHandle(title, body);
+    // eslint-disable-next-line
+    location("/");
   };
+  useEffect(() => {
+    if (passEdit) {
+      setTitle(passEdit.title);
+      setBody(passEdit.body);
+    }
+  }, [passEdit]);
+
   return (
     <div>
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={passPost}>
         <label htmlFor="title">Title</label>
         <br />
         <input
           id="title"
           type="text"
           placeholder="Title here.."
-          value={inputValue.title}
-          onChange={(e) =>
-            setInputValue({ ...inputValue, title: e.target.value })
-          }
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <br />
         <br />
@@ -28,15 +37,11 @@ const Post = ({ postHandle }) => {
         <textarea
           typeof="comment"
           placeholder="Body here..."
-          value={inputValue.body}
-          onChange={(e) =>
-            setInputValue({ ...inputValue, body: e.target.value })
-          }
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
         ></textarea>
         <br />
-        <button type="submit" onClick={passPost}>
-          Submit
-        </button>
+        <button type="submit">{passEdit ? "Update" : "Submit"}</button>
       </form>
     </div>
   );
