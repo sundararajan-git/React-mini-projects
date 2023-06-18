@@ -1,0 +1,16 @@
+.posts a {
+  color: black;
+}
+.posts {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(90deg, #bcfffb 0%, #d9e7ff 100%);
+  margin: 10px;
+  padding: 10px;
+  font-size: 70%;
+  border-radius: 5px;
+}
+span {
+  font-size: 50%;
+  float: right;
+}

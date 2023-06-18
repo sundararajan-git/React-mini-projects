@@ -9,12 +9,14 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: scroll;
+}
+#root::-webkit-scrollbar {
+  display: none;
 }
 .container {
   border-radius: 5px;
   box-shadow: 0px 0px 7px 7px gray;
-  /* border: 2px solid black; */
   height: 90vh;
   width: 300px;
-  /* padding: 1%; */
 }

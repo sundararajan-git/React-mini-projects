@@ -1,19 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./Posts.css";
 
 const Post = ({ id, title, body, postid }) => {
   const date = new Date();
   return (
-    <>
-      <div>
-        <h2>
-          <Link to={`/post/${id}`} onClick={() => postid(id)}>
-            {title}
-          </Link>
-        </h2>
-        <p>{body}</p>
-      </div>
-    </>
+    <div className="posts">
+      <h2>
+        <Link to={`/post/${id}`} onClick={() => postid(id)}>
+          {title}
+        </Link>
+        <span> </span>
+        <span>{date.toLocaleDateString()}</span>
+      </h2>
+      <p>{body}</p>
+    </div>
   );
 };
 

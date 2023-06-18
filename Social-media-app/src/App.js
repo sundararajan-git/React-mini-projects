@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 import Header from "./component/header/Header";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Form,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import Home from "./screens/home/Home";
 import Post from "./screens/createpost/CreatePost";
 import About from "./screens/about/About";
 import Showpost from "./screens/showpost/Showpost";
 import "./App.css";
+import RegisterForm from "./screens/registerform/RegisterForm";
 
 const App = () => {
   const [passpost, setpassPost] = useState([]);
   const [showPost, setShowpost] = useState();
   const [passEdit, setpassEdit] = useState(null);
   const [id, setId] = useState(0);
+  const [userDetail, setUserDetail] = useState(null);
+  const [signup, setSignup] = useState(false);
+  const [login, setLogin] = useState(false);
   const postHandle = (title, body) => {
     setId(id + 1);
     if (passEdit) {
@@ -34,36 +44,74 @@ const App = () => {
     setpassPost(filtered);
   };
   const editHandle = (id) => {
-    const edit = passpost.map((item) => {
+    const edit = passpost.find((item) => {
       return item.id === id && item;
     });
-    setpassEdit(edit[0]);
+    setpassEdit(edit);
+  };
+  const registerDetail = (form) => {
+    if (
+      form.username &&
+      form.email &&
+      form.password &&
+      form.password === form.confirmPassword
+    ) {
+      setUserDetail(form);
+      setSignup(true);
+    }
+  };
+  const logout = (username) => {
+    setSignup(false);
+    console.log(username);
+  };
+  const loginusers = (value) => {
+    setLogin(value);
   };
   return (
     <BrowserRouter>
       <div className="container">
-        <Header />
-        <Routes>
-          <Route
-            path="/"
-            element={<Home passpost={passpost} postid={postid} />}
+        {login ? (
+          <p>hello</p>
+        ) : !signup ? (
+          <RegisterForm
+            registerDetail={registerDetail}
+            loginusers={loginusers}
           />
-          <Route
-            path="/post/:id"
-            element={
-              <Showpost
-                showPost={showPost}
-                deleteHandle={deleteHandle}
-                editHandle={editHandle}
+        ) : (
+          <>
+            <Header />
+            <Routes>
+              <Route
+                path="/"
+                element={<Home passpost={passpost} postid={postid} />}
               />
-            }
-          />
-          <Route
-            path="/posts"
-            element={<Post postHandle={postHandle} passEdit={passEdit} />}
-          />
-          <Route path="/about" element={<About />} />
-        </Routes>
+              <Route
+                path="/post/:id"
+                element={
+                  <Showpost
+                    showPost={showPost}
+                    deleteHandle={deleteHandle}
+                    editHandle={editHandle}
+                  />
+                }
+              />
+              <Route
+                path="/posts"
+                element={
+                  <Post
+                    postHandle={postHandle}
+                    passEdit={passEdit}
+                    setpassEdit={setpassEdit}
+                  />
+                }
+              />
+              <Route
+                path="/about"
+                element={<About userDetail={userDetail} logout={logout} />}
+              />
+            </Routes>
+          </>
+        )}
       </div>
     </BrowserRouter>
   );
