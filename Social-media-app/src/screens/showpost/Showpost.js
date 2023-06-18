@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Showpost.css";
 
-const Showpost = ({ showPost, deleteHandle, editHandle, curuser }) => {
-  // const [editPath, setEditpath] = useState(null);
+const Showpost = ({ showPost, deleteHandle, editHandle }) => {
   const location = useNavigate();
   const edit = (id) => {
     editHandle(id);
@@ -24,7 +23,7 @@ const Showpost = ({ showPost, deleteHandle, editHandle, curuser }) => {
           <button onClick={() => edit(showPost.id)}>Edit</button>
           <button onClick={() => del(showPost.id)}>Delete</button>
           <br />
-          <label> by {curuser.username}</label>
+          <label> by {showPost.username}</label>
         </div>
       )}
     </>

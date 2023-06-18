@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Createpost.css";
 
-const Post = ({ postHandle, passEdit, setpassEdit }) => {
+const Post = ({ postHandle, passEdit, setpassEdit, curuser }) => {
+  console.log(curuser.username);
   const location = useNavigate();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -10,7 +11,7 @@ const Post = ({ postHandle, passEdit, setpassEdit }) => {
     e.preventDefault();
     setpassEdit(null);
     if (title && body) {
-      postHandle(title, body);
+      postHandle(title, body, curuser.username);
       // eslint-disable-next-line
       location("/");
     }

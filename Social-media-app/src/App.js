@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./component/header/Header";
 import {
   BrowserRouter,
@@ -9,11 +9,12 @@ import {
 } from "react-router-dom";
 import Home from "./screens/home/Home";
 import Post from "./screens/createpost/CreatePost";
-import About from "./screens/about/About";
+import About from "./screens/about/Profile";
 import Showpost from "./screens/showpost/Showpost";
 import "./App.css";
 import RegisterForm from "./screens/registerform/RegisterForm";
 import LoginForm from "./screens/loginform/LoginForm";
+import Profile from "./screens/about/Profile";
 
 const App = () => {
   const [passpost, setpassPost] = useState([]);
@@ -24,18 +25,33 @@ const App = () => {
   const [signup, setSignup] = useState(false);
   const [login, setLogin] = useState(false);
   const [curuser, setcruser] = useState(null);
-  console.log(userDetail);
-  const postHandle = (title, body) => {
+  useEffect(() => {
+    const list = JSON.parse(localStorage.getItem("post"));
+    if (list) {
+      setpassPost(list);
+    }
+    const user = JSON.parse(localStorage.getItem("users"));
+    if (user) {
+      setUserDetail(user);
+    }
+  }, []);
+  const postHandle = (title, body, user) => {
     setId(id + 1);
     if (passEdit) {
       const update = passpost.map((item) => {
         return item.id === passEdit.id
-          ? { ...item, title: title, body: body }
+          ? { ...item, title: title, body: body, username: user }
           : item;
       });
       setpassPost(update);
+      localStorage.setItem("post", JSON.stringify(update));
     } else {
-      setpassPost([...passpost, { id: id, title: title, body: body }]);
+      const out = [
+        ...passpost,
+        { id: id, title: title, body: body, username: user },
+      ];
+      setpassPost(out);
+      localStorage.setItem("post", JSON.stringify(out));
     }
   };
   const postid = (id) => {
@@ -45,12 +61,14 @@ const App = () => {
   const deleteHandle = (id) => {
     const filtered = passpost.filter((item) => item.id !== id);
     setpassPost(filtered);
+    localStorage.setItem("post", JSON.stringify(filtered));
   };
   const editHandle = (id) => {
     const edit = passpost.find((item) => {
       return item.id === id && item;
     });
     setpassEdit(edit);
+    localStorage.setItem("post", JSON.stringify(edit));
   };
   const registerDetail = (form) => {
     if (
@@ -60,7 +78,9 @@ const App = () => {
       form.password === form.confirmPassword
     ) {
       setcruser(form);
-      setUserDetail([...userDetail, form]);
+      const out = [...userDetail, form];
+      setUserDetail(out);
+      localStorage.setItem("users", JSON.stringify(out));
       setSignup(true);
     }
   };
@@ -110,12 +130,13 @@ const App = () => {
                     postHandle={postHandle}
                     passEdit={passEdit}
                     setpassEdit={setpassEdit}
+                    curuser={curuser}
                   />
                 }
               />
               <Route
-                path="/about"
-                element={<About curuser={curuser} logout={logout} />}
+                path="/profile"
+                element={<Profile curuser={curuser} logout={logout} />}
               />
             </Routes>
           </>
