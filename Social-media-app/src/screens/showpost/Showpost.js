@@ -2,18 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Showpost.css";
 
-const Showpost = ({ showPost, deleteHandle, editHandle }) => {
+const Showpost = ({ showPost, deleteHandle, editHandle, curuser }) => {
   // const [editPath, setEditpath] = useState(null);
   const location = useNavigate();
   const edit = (id) => {
     editHandle(id);
-    // setEditpath(true);
     location("/posts");
   };
-  // useEffect(() => {
-  // if (editPath) {
-  // }
-  // }, [editPath]);
   const del = (id) => {
     deleteHandle(id);
     location("/");
@@ -28,6 +23,8 @@ const Showpost = ({ showPost, deleteHandle, editHandle }) => {
           <br />
           <button onClick={() => edit(showPost.id)}>Edit</button>
           <button onClick={() => del(showPost.id)}>Delete</button>
+          <br />
+          <label> by {curuser.username}</label>
         </div>
       )}
     </>

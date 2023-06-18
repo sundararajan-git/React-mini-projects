@@ -75,7 +75,7 @@ const RegisterForm = ({ registerDetail, loginusers }) => {
           )
         ) : (
           <pre> </pre>
-        )}{" "}
+        )}
         <br />
         <label htmlFor="confirm-password">Confirm Password</label>
         <input
@@ -98,7 +98,10 @@ const RegisterForm = ({ registerDetail, loginusers }) => {
         <br />
         <div>
           <div onClick={googleLogin} id="g-btn" role="button">
-            <img src="https://banner2.cleanpng.com/20180521/ers/kisspng-google-logo-5b02bbe1d5c6e0.2384399715269058258756.jpg"></img>
+            <img
+              src="https://banner2.cleanpng.com/20180521/ers/kisspng-google-logo-5b02bbe1d5c6e0.2384399715269058258756.jpg"
+              title="Google sign up"
+            ></img>
           </div>
         </div>
         <br />

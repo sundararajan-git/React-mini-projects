@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Posts.css";
 
-const Post = ({ id, title, body, postid }) => {
+const Post = ({ id, title, body, postid, curuser }) => {
   const date = new Date();
   return (
     <div className="posts">
@@ -14,6 +14,7 @@ const Post = ({ id, title, body, postid }) => {
         <span>{date.toLocaleDateString()}</span>
       </h2>
       <p>{body}</p>
+      <p>{`by ${curuser.username}`}</p>
     </div>
   );
 };

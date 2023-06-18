@@ -13,15 +13,18 @@ import About from "./screens/about/About";
 import Showpost from "./screens/showpost/Showpost";
 import "./App.css";
 import RegisterForm from "./screens/registerform/RegisterForm";
+import LoginForm from "./screens/loginform/LoginForm";
 
 const App = () => {
   const [passpost, setpassPost] = useState([]);
   const [showPost, setShowpost] = useState();
   const [passEdit, setpassEdit] = useState(null);
   const [id, setId] = useState(0);
-  const [userDetail, setUserDetail] = useState(null);
+  const [userDetail, setUserDetail] = useState([]);
   const [signup, setSignup] = useState(false);
   const [login, setLogin] = useState(false);
+  const [curuser, setcruser] = useState(null);
+  console.log(userDetail);
   const postHandle = (title, body) => {
     setId(id + 1);
     if (passEdit) {
@@ -56,22 +59,27 @@ const App = () => {
       form.password &&
       form.password === form.confirmPassword
     ) {
-      setUserDetail(form);
+      setcruser(form);
+      setUserDetail([...userDetail, form]);
       setSignup(true);
     }
   };
   const logout = (username) => {
     setSignup(false);
-    console.log(username);
   };
   const loginusers = (value) => {
     setLogin(value);
+  };
+  const currentuser = (user) => {
+    setLogin(false);
+    setSignup(true);
+    setcruser(user);
   };
   return (
     <BrowserRouter>
       <div className="container">
         {login ? (
-          <p>hello</p>
+          <LoginForm userDetail={userDetail} currentuser={currentuser} />
         ) : !signup ? (
           <RegisterForm
             registerDetail={registerDetail}
@@ -107,7 +115,7 @@ const App = () => {
               />
               <Route
                 path="/about"
-                element={<About userDetail={userDetail} logout={logout} />}
+                element={<About curuser={curuser} logout={logout} />}
               />
             </Routes>
           </>

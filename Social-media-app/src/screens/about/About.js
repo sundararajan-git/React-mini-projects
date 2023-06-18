@@ -1,11 +1,13 @@
 import React from "react";
 
-const About = ({ userDetail, logout }) => {
-  console.log(userDetail);
+const About = ({ curuser, logout }) => {
   return (
     <div>
-      <></>
-      <button onClick={() => logout(userDetail.username)}>Log out</button>
+      <>
+        <p>{curuser.username}</p>
+        <p>{curuser.email}</p>
+      </>
+      <button onClick={() => logout(curuser.username)}>Log out</button>
     </div>
   );
 };

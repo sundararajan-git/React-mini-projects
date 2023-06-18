@@ -2,7 +2,7 @@ import React from "react";
 import Posts from "../../component/posts/Posts";
 import "./Home.css";
 
-const Home = ({ passpost, postid }) => {
+const Home = ({ passpost, postid, curuser }) => {
   return (
     <div className="list">
       {passpost &&
@@ -14,6 +14,7 @@ const Home = ({ passpost, postid }) => {
               body={item.body}
               postid={postid}
               key={item.id}
+              curuser={curuser}
             />
           );
         })}
