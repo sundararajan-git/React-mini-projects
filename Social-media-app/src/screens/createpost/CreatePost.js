@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "./Createpost.css";
 
-const Post = ({ postHandle, passEdit }) => {
+const Post = ({ postHandle, passEdit, setpassEdit }) => {
   const location = useNavigate();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const passPost = (e) => {
     e.preventDefault();
-    postHandle(title, body);
-    // eslint-disable-next-line
-    location("/");
+    setpassEdit(null);
+    if (title && body) {
+      postHandle(title, body);
+      // eslint-disable-next-line
+      location("/");
+    }
   };
   useEffect(() => {
     if (passEdit) {
@@ -17,9 +21,8 @@ const Post = ({ postHandle, passEdit }) => {
       setBody(passEdit.body);
     }
   }, [passEdit]);
-
   return (
-    <div>
+    <div className="main">
       <form onSubmit={passPost}>
         <label htmlFor="title">Title</label>
         <br />
@@ -39,6 +42,7 @@ const Post = ({ postHandle, passEdit }) => {
           placeholder="Body here..."
           value={body}
           onChange={(e) => setBody(e.target.value)}
+          rows={5}
         ></textarea>
         <br />
         <button type="submit">{passEdit ? "Update" : "Submit"}</button>

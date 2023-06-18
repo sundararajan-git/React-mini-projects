@@ -1,0 +1,14 @@
+.showpost {
+  height: 90%;
+  padding: 20px;
+}
+.showpost button {
+  padding: 10px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background: rgb(2, 0, 36);
+  cursor: pointer;
+  width: 70px;
+}

@@ -1,9 +1,10 @@
 import React from "react";
 import Posts from "../../component/posts/Posts";
+import "./Home.css";
 
 const Home = ({ passpost, postid }) => {
   return (
-    <div>
+    <div className="list">
       {passpost &&
         [...passpost].reverse().map((item) => {
           return (

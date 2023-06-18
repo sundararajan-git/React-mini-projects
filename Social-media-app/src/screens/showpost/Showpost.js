@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Showpost.css";
 
 const Showpost = ({ showPost, deleteHandle, editHandle }) => {
-  const [editPath, setEditpath] = useState(null);
+  // const [editPath, setEditpath] = useState(null);
   const location = useNavigate();
   const edit = (id) => {
     editHandle(id);
-    setEditpath(true);
+    // setEditpath(true);
+    location("/posts");
   };
-  useEffect(() => {
-    if (editPath) {
-      location("/posts");
-    }
-  }, [editPath]);
+  // useEffect(() => {
+  // if (editPath) {
+  // }
+  // }, [editPath]);
   const del = (id) => {
     deleteHandle(id);
     location("/");
@@ -20,9 +21,11 @@ const Showpost = ({ showPost, deleteHandle, editHandle }) => {
   return (
     <>
       {showPost && (
-        <div>
+        <div className="showpost">
           <h2>{showPost.title}</h2>
+          <br />
           <p>{showPost.body}</p>
+          <br />
           <button onClick={() => edit(showPost.id)}>Edit</button>
           <button onClick={() => del(showPost.id)}>Delete</button>
         </div>
