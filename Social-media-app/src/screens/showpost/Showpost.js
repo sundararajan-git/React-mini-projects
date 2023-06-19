@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Showpost.css";
 
@@ -10,7 +10,7 @@ const Showpost = ({ showPost, deleteHandle, editHandle }) => {
   };
   const del = (id) => {
     deleteHandle(id);
-    location("/");
+    location("/home");
   };
   return (
     <>

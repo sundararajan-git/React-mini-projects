@@ -3,17 +3,31 @@ import { useNavigate } from "react-router-dom";
 import "./Createpost.css";
 
 const Post = ({ postHandle, passEdit, setpassEdit, curuser }) => {
-  console.log(curuser.username);
   const location = useNavigate();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [loginuser, setloginuser] = useState(
+    JSON.parse(localStorage.getItem("username")) || []
+  );
+  console.log(curuser);
+  useEffect(() => {
+    if (curuser) {
+      const out = [...loginuser, curuser];
+      setloginuser(out);
+      localStorage.setItem("username", JSON.stringify(out));
+    }
+  }, [curuser]);
   const passPost = (e) => {
     e.preventDefault();
     setpassEdit(null);
     if (title && body) {
-      postHandle(title, body, curuser.username);
+      postHandle(
+        title,
+        body,
+        loginuser.length > 0 && loginuser[loginuser.length - 1].username
+      );
       // eslint-disable-next-line
-      location("/");
+      location("/home");
     }
   };
   useEffect(() => {

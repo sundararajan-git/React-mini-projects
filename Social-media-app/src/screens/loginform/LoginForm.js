@@ -1,14 +1,13 @@
 import React from "react";
 import "./LoginForm.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const LoginForm = ({ userDetail, currentuser }) => {
   const [form, setForm] = useState({
     username: "",
     password: "",
   });
   const [valid, setvalid] = useState(false);
-  const [username, setUsername] = useState(null);
-  const [password, setpassword] = useState(null);
   const loginHandle = (e) => {
     e.preventDefault();
     setvalid(true);
@@ -25,7 +24,11 @@ const LoginForm = ({ userDetail, currentuser }) => {
     <>
       <div className="log-in">
         <form onSubmit={loginHandle}>
-          <div></div>
+          <div>
+            <span>
+              <Link to="/">Back</Link>
+            </span>
+          </div>
           <label htmlFor="username">User Name</label>
           <input
             type="text"

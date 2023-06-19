@@ -14,7 +14,7 @@ const Post = ({ id, title, body, postid, username }) => {
         <span>{date.toLocaleDateString()}</span>
       </h2>
       <p>{body}</p>
-      <p>{`by ${username}`}</p>
+      <p>{`by ${username ? username : null}`}</p>
     </div>
   );
 };

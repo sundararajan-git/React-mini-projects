@@ -1,13 +1,13 @@
 import React from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const Header = () => {
   return (
     <header>
       <nav>
         <ul>
-          <Link to="/">
+          <Link to="/home">
             <li className=" li active">Home</li>
           </Link>
           <Link to="/posts">
@@ -16,6 +16,7 @@ const Header = () => {
           <Link to="/profile">
             <li className="li">Profile</li>
           </Link>
+          <Outlet />
         </ul>
       </nav>
     </header>

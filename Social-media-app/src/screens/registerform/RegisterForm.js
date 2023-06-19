@@ -3,7 +3,7 @@ import { auth, googleProvider } from "./firebase";
 import { signInWithPopup } from "firebase/auth";
 import "./RegisterForm.css";
 import { Link } from "react-router-dom";
-const RegisterForm = ({ registerDetail, loginusers }) => {
+const RegisterForm = ({ registerDetail }) => {
   // eslint-disable-next-line
   const [loginuser, setLoginuser] = useState(null);
   const googleLogin = () => {
@@ -24,7 +24,7 @@ const RegisterForm = ({ registerDetail, loginusers }) => {
   };
   return (
     <div className="register">
-      <a onClick={() => loginusers(true)}>Log in</a>
+      <Link to={"/login"}>Log in</Link>
       <form onSubmit={(e) => e.preventDefault()}>
         <label htmlFor="username">User Name</label>
         <input
@@ -94,13 +94,14 @@ const RegisterForm = ({ registerDetail, loginusers }) => {
           )
         ) : (
           <pre> </pre>
-        )}{" "}
+        )}
         <br />
         <div>
           <div onClick={googleLogin} id="g-btn" role="button">
             <img
               src="https://banner2.cleanpng.com/20180521/ers/kisspng-google-logo-5b02bbe1d5c6e0.2384399715269058258756.jpg"
               title="Google sign up"
+              alt="Google"
             ></img>
           </div>
         </div>

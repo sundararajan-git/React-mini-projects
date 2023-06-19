@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Header from "./component/header/Header";
-import {
-  BrowserRouter,
-  Form,
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Home from "./screens/home/Home";
 import Post from "./screens/createpost/CreatePost";
-import About from "./screens/about/Profile";
 import Showpost from "./screens/showpost/Showpost";
 import "./App.css";
 import RegisterForm from "./screens/registerform/RegisterForm";
@@ -22,9 +15,9 @@ const App = () => {
   const [passEdit, setpassEdit] = useState(null);
   const [id, setId] = useState(0);
   const [userDetail, setUserDetail] = useState([]);
-  const [signup, setSignup] = useState(false);
-  const [login, setLogin] = useState(false);
   const [curuser, setcruser] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
     const list = JSON.parse(localStorage.getItem("post"));
     if (list) {
@@ -81,68 +74,81 @@ const App = () => {
       const out = [...userDetail, form];
       setUserDetail(out);
       localStorage.setItem("users", JSON.stringify(out));
-      setSignup(true);
+      if (form) {
+        navigate("/home");
+      }
     }
+    console.log(form);
   };
   const logout = (username) => {
-    setSignup(false);
-  };
-  const loginusers = (value) => {
-    setLogin(value);
+    if (username) {
+      navigate("/login");
+    } else {
+      navigate("/");
+    }
   };
   const currentuser = (user) => {
-    setLogin(false);
-    setSignup(true);
-    setcruser(user);
+    if (user) {
+      setcruser(user);
+      navigate("/home");
+    }
   };
   return (
-    <BrowserRouter>
+    <>
       <div className="container">
-        {login ? (
-          <LoginForm userDetail={userDetail} currentuser={currentuser} />
-        ) : !signup ? (
-          <RegisterForm
-            registerDetail={registerDetail}
-            loginusers={loginusers}
-          />
+        {location.pathname === "/login" || location.pathname === "/" ? null : (
+          <Header />
+        )}
+        {location.pathname === "/login" || location.pathname === "/" ? (
+          <Routes>
+            <Route
+              path="/"
+              element={<RegisterForm registerDetail={registerDetail} />}
+            ></Route>
+            <Route
+              path="/login"
+              element={
+                <LoginForm userDetail={userDetail} currentuser={currentuser} />
+              }
+            ></Route>
+          </Routes>
         ) : (
-          <>
-            <Header />
-            <Routes>
-              <Route
-                path="/"
-                element={<Home passpost={passpost} postid={postid} />}
-              />
-              <Route
-                path="/post/:id"
-                element={
-                  <Showpost
-                    showPost={showPost}
-                    deleteHandle={deleteHandle}
-                    editHandle={editHandle}
-                  />
-                }
-              />
-              <Route
-                path="/posts"
-                element={
-                  <Post
-                    postHandle={postHandle}
-                    passEdit={passEdit}
-                    setpassEdit={setpassEdit}
-                    curuser={curuser}
-                  />
-                }
-              />
-              <Route
-                path="/profile"
-                element={<Profile curuser={curuser} logout={logout} />}
-              />
-            </Routes>
-          </>
+          <Routes>
+            <Route path="*" element={<p>No Result</p>} />
+            <Route
+              path="/home"
+              element={<Home passpost={passpost} postid={postid} />}
+            />
+            <Route
+              path="/post/:id"
+              element={
+                <Showpost
+                  showPost={showPost}
+                  deleteHandle={deleteHandle}
+                  editHandle={editHandle}
+                />
+              }
+            />
+            <Route
+              path="/posts"
+              element={
+                <Post
+                  postHandle={postHandle}
+                  passEdit={passEdit}
+                  setpassEdit={setpassEdit}
+                  curuser={curuser}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={<Profile curuser={curuser} logout={logout} />}
+            />
+            <Route path="*" element={<p>No Result</p>} />
+          </Routes>
         )}
       </div>
-    </BrowserRouter>
+    </>
   );
 };
 
