@@ -1,0 +1,19 @@
+.btns {
+  float: right;
+}
+button {
+  margin: 10px;
+  border: none;
+  background: rgb(2, 0, 36);
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  width: 70px;
+}
+button:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(175, 0, 255, 1) 76%
+  );
+}
