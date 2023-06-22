@@ -17,7 +17,6 @@ const Editpost = () => {
   );
   const editHandle = (e) => {
     e.preventDefault();
-    console.log(editpost);
     if (!editpost.title) {
       setFieldValid("Title should not be empty");
       return;

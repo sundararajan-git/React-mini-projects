@@ -52,7 +52,7 @@ const useApiFetch = (url, method) => {
       (method === "POST" || method === "PATCH" || method === "DELETE") &&
       createdata
     ) {
-      // (async () => apiFetch(createdata))();
+      (async () => apiFetch(createdata))();
       apiFetch(createdata);
     }
   }, [url, method, createdata]);

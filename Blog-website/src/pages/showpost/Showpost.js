@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Showpost.css";
 import useApiFetch from "../../hook/useapifetch";
@@ -7,6 +7,7 @@ const Showpost = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { state } = location;
+  const [showsuccess, setShowsuccess] = useState(null);
   const { apidata, fetchErr, isloading, postData } = useApiFetch(
     `http://localhost:3500/post/${state.id}`,
     "DELETE"
@@ -19,9 +20,10 @@ const Showpost = () => {
   };
   useEffect(() => {
     if (apidata.length !== 0) {
+      setShowsuccess("Created succesfully !");
       const timer = setTimeout(() => {
         navigate("/");
-      }, 1000);
+      }, 500);
       return () => clearTimeout(timer);
     }
   }, [apidata]);
@@ -38,6 +40,14 @@ const Showpost = () => {
           Delete
         </button>
       </div>
+      <br />
+      <br />
+      <br />
+      {showsuccess && (
+        <div className="alert alert-success" role="alert">
+          {showsuccess}
+        </div>
+      )}
     </div>
   );
 };
