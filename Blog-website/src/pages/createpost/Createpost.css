@@ -1,3 +1,9 @@
+.form-control {
+  border: 1px solid purple;
+}
+label {
+  margin-bottom: 5px;
+}
 .btns {
   float: right;
 }
@@ -8,7 +14,7 @@ button {
   padding: 10px;
   border-radius: 5px;
   color: white;
-  width: 80px;
+  width: 70px;
 }
 button:hover {
   background: linear-gradient(

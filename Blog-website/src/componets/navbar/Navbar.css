@@ -1,0 +1,39 @@
+header {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(175, 0, 255, 1) 76%
+  );
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0px 45px 0px 30px;
+}
+.menu-bar {
+  position: sticky;
+  top: 0;
+  z-index: 99999;
+}
+header h1 {
+  margin-top: 1%;
+  cursor: pointer;
+}
+h1 a {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+nav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 35px;
+}
+header a {
+  color: white;
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
