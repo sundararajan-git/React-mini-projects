@@ -3,7 +3,7 @@ import "./app.css";
 
 const App = () => {
   const [list, setList] = useState(
-    [JSON.parse(localStorage.getItem("shoping-list"))] || null
+    [JSON.parse(localStorage.getItem("shoping-list"))] || []
   );
   const [item, setItem] = useState({
     item: "",
@@ -41,12 +41,12 @@ const App = () => {
     const inc = [...list, list[i].itemnum++];
     setItem(inc);
     // eslint-disable-next-line
-    const total = list.map((item, index) => {
+    const out = list.map((item, index) => {
       if (i === index) {
         settotal(total + 1);
       }
     });
-    localStorage.setItem("shoping-list", JSON.stringify(inc, total));
+    localStorage.setItem("shoping-list", JSON.stringify(inc, out));
   };
   const decrement = (i) => {
     if (list[i].itemnum >= 1) {
@@ -81,7 +81,7 @@ const App = () => {
             ? list &&
               list.map((item, index) => {
                 return (
-                  <div key={item.id} className="list">
+                  <div key={index} className="list">
                     <div className="item">
                       <input
                         type="checkbox"
