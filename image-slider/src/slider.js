@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import HTML from "./HTML.jpg";
-import CSS from "./CSS.jpg";
-import JS1 from "./JS1.jpg";
-import JS2 from "./JS2.jpg";
-import REACT from "./REACT.jpg";
+import HTML from "./images/HTML.jpg";
+import CSS from "./images/CSS.jpg";
+import JS1 from "./images/JS1.jpg";
+import JS2 from "./images/JS2.jpg";
+import REACT from "./images/REACT.jpg";
 
 export default function Slider() {
   const [image, setimage] = useState([HTML, CSS, JS1, JS2, REACT]);
