@@ -69,6 +69,9 @@ input[type="checkbox"] {
 input[type="radio"] {
   accent-color: rebeccapurple;
 }
+p {
+  color: red;
+}
 @media all and (max-width: 600px) {
   form {
     width: 80%;
