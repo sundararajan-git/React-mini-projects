@@ -11,7 +11,7 @@ const Editpost = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { state: state } = location;
-  const { apidata, fetchErr, isloading, postData } = useApiFetch(
+  const { Data, Err, isloading, optionData } = useApiFetch(
     `http://localhost:3500/post/${state.id}`,
     "PATCH"
   );
@@ -26,17 +26,17 @@ const Editpost = () => {
       return;
     }
     setFieldValid(null);
-    postData(modify);
+    optionData(modify);
   };
   useEffect(() => {
-    if (apidata.length !== 0) {
+    if (Data.length !== 0) {
       setShowsuccess("Updated succesfully !");
       const timer = setTimeout(() => {
         navigate("/");
       }, 500);
       return () => clearTimeout(timer);
     }
-  }, [apidata]);
+  }, [Data]);
   useEffect(() => {
     setEditpost({ ...editpost, title: state.title, body: state.body });
   }, []);

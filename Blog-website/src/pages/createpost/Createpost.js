@@ -13,10 +13,7 @@ const Createpost = () => {
   const navigate = useNavigate();
   const [fieldValid, setFieldValid] = useState(null);
   const [showsuccess, setShowsuccess] = useState(null);
-  const { apidata, fetchErr, isloading, postData } = useApiFetch(
-    APIURL,
-    "POST"
-  );
+  const { Data, Err, isloading, optionData } = useApiFetch(APIURL, "POST");
   const submitHandle = (e) => {
     e.preventDefault();
     if (!createdpost.title) {
@@ -28,17 +25,17 @@ const Createpost = () => {
       return;
     }
     setFieldValid(null);
-    postData(createdpost);
+    optionData(createdpost);
   };
   useEffect(() => {
-    if (apidata.length !== 0) {
+    if (Data.length !== 0) {
       setShowsuccess("Created succesfully !");
       const timer = setTimeout(() => {
         navigate("/");
       }, 500);
       return () => clearTimeout(timer);
     }
-  }, [apidata]);
+  }, [Data]);
   return (
     <div>
       <div className="container">

@@ -1,7 +1,0 @@
-.list {
-  overflow-y: scroll;
-  height: 88%;
-}
-.list::-webkit-scrollbar {
-  display: none;
-}

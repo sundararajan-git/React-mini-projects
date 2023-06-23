@@ -8,7 +8,7 @@ const Showpost = () => {
   const location = useLocation();
   const { state } = location;
   const [showsuccess, setShowsuccess] = useState(null);
-  const { apidata, fetchErr, isloading, postData } = useApiFetch(
+  const { Data, Err, isloading, optionData } = useApiFetch(
     `http://localhost:3500/post/${state.id}`,
     "DELETE"
   );
@@ -16,17 +16,17 @@ const Showpost = () => {
     navigate(`/edit/${id}`, { state: state });
   };
   const deletepost = (id) => {
-    postData();
+    optionData();
   };
   useEffect(() => {
-    if (apidata.length !== 0) {
+    if (Data.length !== 0) {
       setShowsuccess("Created succesfully !");
       const timer = setTimeout(() => {
         navigate("/");
       }, 500);
       return () => clearTimeout(timer);
     }
-  }, [apidata]);
+  }, [Data]);
   return (
     <div className="container">
       <h2>{state.title}</h2>

@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const useApiFetch = (url, method) => {
-  const [apidata, setApidata] = useState([]);
-  const [fetchErr, setFetchErr] = useState(null);
+  const [Data, setData] = useState([]);
+  const [Err, setErr] = useState(null);
   const [isloading, setisLoading] = useState(null);
-  const [createdata, setCreatedata] = useState(null);
-  const navigate = useNavigate();
-  const postData = (data) => {
+  const [Option, setOption] = useState(null);
+  const optionData = (data) => {
     if (method === "POST") {
-      setCreatedata(null);
-      setCreatedata({
+      setOption(null);
+      setOption({
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -18,7 +16,7 @@ const useApiFetch = (url, method) => {
         body: JSON.stringify(data),
       });
     } else if (method === "PATCH") {
-      setCreatedata({
+      setOption({
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -26,22 +24,22 @@ const useApiFetch = (url, method) => {
         body: JSON.stringify(data),
       });
     } else if (method === "DELETE") {
-      setCreatedata({
+      setOption({
         method: "DELETE",
       });
     }
   };
   useEffect(() => {
     setisLoading(true);
-    const apiFetch = async (createdata) => {
+    const apiFetch = async (Option) => {
       try {
-        const response = await fetch(url, { ...createdata });
+        const response = await fetch(url, { ...Option });
         if (!response.ok) throw Error("Data is not recived");
         const jsonresponse = await response.json();
-        setApidata(jsonresponse);
-        setFetchErr(null);
+        setData(jsonresponse);
+        setErr(null);
       } catch (err) {
-        setFetchErr(err.message);
+        setErr(err.message);
       } finally {
         setisLoading(false);
       }
@@ -50,12 +48,11 @@ const useApiFetch = (url, method) => {
       (async () => await apiFetch())();
     } else if (
       (method === "POST" || method === "PATCH" || method === "DELETE") &&
-      createdata
+      Option
     ) {
-      (async () => apiFetch(createdata))();
-      apiFetch(createdata);
+      (async () => await apiFetch(Option))();
     }
-  }, [url, method, createdata]);
-  return { apidata, fetchErr, isloading, postData };
+  }, [url, method, Option]);
+  return { Data, Err, isloading, optionData };
 };
 export default useApiFetch;
