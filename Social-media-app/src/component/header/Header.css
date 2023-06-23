@@ -1,30 +1,27 @@
-ul {
+header ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
   gap: 10px;
   list-style: none;
   height: 60px;
-}
-ul li {
-  padding: 10px;
-}
-ul li:hover {
-  background-color: rgba(2, 0, 36, 1);
-  border-radius: 5px;
-  cursor: pointer;
-}
-nav {
   background: rgb(2, 0, 36);
   background: linear-gradient(
     90deg,
     rgba(2, 0, 36, 1) 0%,
-    rgba(0, 255, 218, 1) 100%
+    rgba(255, 0, 0, 1) 76%
   );
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 3px;
 }
-a {
+header li {
+  padding: 10px;
+}
+header li:hover {
+  background-color: rgba(2, 0, 36, 1);
+  border-radius: 5px;
+  cursor: pointer;
+}
+header a {
   color: white;
   text-decoration: none;
 }

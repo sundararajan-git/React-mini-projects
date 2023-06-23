@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from "react";
+import "./Editpost.css";
+import { useLocation, useNavigate } from "react-router-dom";
 import useApiFetch from "../../hook/UseApiFetch";
-import API_URL from "../../api/api";
-import { useNavigate } from "react-router-dom";
 
-const CreatePost = () => {
-  const [createdpost, setCreatedpost] = useState({ title: "", body: "" });
+const Editpost = () => {
+  const [createdpost, setCreatedpost] = useState({
+    id: 0,
+    title: "",
+    body: "",
+  });
   const [fieldValid, setFieldvalid] = useState(null);
   const [showsuccess, serShowsuccess] = useState(null);
+  const loaction = useLocation();
+  const { state } = loaction;
   const navigate = useNavigate();
-  const { Data, Err, isloading, optionData } = useApiFetch(API_URL, "POST");
+  const { Data, Err, isloading, optionData } = useApiFetch(
+    `http://localhost:3600/posts/${state.id}`,
+    "PATCH"
+  );
+  useEffect(() => {
+    if (state) {
+      setCreatedpost({ title: state.title, body: state.body });
+    }
+  }, [state]);
   const submitHandle = (e) => {
     e.preventDefault();
     optionData(createdpost);
-    // setCreatedpost({ title: "", body: "" });
   };
   useEffect(() => {
     if (Data.length !== 0) {
@@ -71,4 +84,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default Editpost;

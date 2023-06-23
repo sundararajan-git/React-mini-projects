@@ -11,7 +11,7 @@ const useApiFetch = (url, method) => {
       setOption({
         method: "POST",
         headers: {
-          "Content-type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
@@ -19,7 +19,7 @@ const useApiFetch = (url, method) => {
       setOption({
         method: "PATCH",
         headers: {
-          "Content-type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
@@ -30,12 +30,12 @@ const useApiFetch = (url, method) => {
     }
   };
   useEffect(() => {
-    setisLoading(true);
     const apiFetch = async (Option) => {
       try {
         const response = await fetch(url, { ...Option });
         if (!response.ok) throw Error("Data is not recived..");
         const jsonresponse = await response.json();
+        setisLoading(true);
         setData(jsonresponse);
         setErr(null);
       } catch (err) {
@@ -47,9 +47,8 @@ const useApiFetch = (url, method) => {
     if (method === "GET") {
       (async () => await apiFetch())();
     } else if (
-      method === "POST" ||
-      method === "PATCH" ||
-      (method === "DELETE" && Option)
+      (method === "POST" || method === "PATCH" || method === "DELETE") &&
+      Option
     ) {
       (async () => await apiFetch(Option))();
     }

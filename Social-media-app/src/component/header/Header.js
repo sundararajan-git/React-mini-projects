@@ -4,13 +4,13 @@ import { Link, Outlet } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header>
+    <header className="container">
       <nav>
         <ul>
           <Link to="/">
             <li className=" li active">Home</li>
           </Link>
-          <Link to="/posts">
+          <Link to="/post">
             <li className="li">Post</li>
           </Link>
           <Link to="/profile">

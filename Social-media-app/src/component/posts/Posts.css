@@ -1,0 +1,16 @@
+.card {
+  margin-top: 20px;
+}
+.card pre {
+  float: right;
+  color: royalblue;
+}
+.card button {
+  border: none;
+  background-color: black;
+  color: white;
+}
+.card button:hover {
+  background: rgba(255, 0, 0, 1);
+  color: white;
+}
