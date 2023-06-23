@@ -1,0 +1,15 @@
+.form-control:focus {
+  border-color: red;
+  box-shadow: none;
+}
+.create-btn {
+  float: right;
+  background-color: black;
+  border-radius: 5px;
+  color: white;
+  border: none;
+}
+.create-btn:hover {
+  background-color: red;
+  color: white;
+}

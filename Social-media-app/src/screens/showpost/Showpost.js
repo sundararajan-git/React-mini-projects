@@ -26,7 +26,7 @@ const Showpost = () => {
     if (Data.length !== 0) {
       const timer = setTimeout(() => {
         navigate("/");
-      }, 800);
+      }, 500);
       return () => clearTimeout(timer);
     }
   }, [Data]);

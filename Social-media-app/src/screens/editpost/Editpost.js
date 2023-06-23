@@ -9,11 +9,11 @@ const Editpost = () => {
     title: "",
     body: "",
   });
-  const [fieldValid, setFieldvalid] = useState(null);
-  const [showsuccess, serShowsuccess] = useState(null);
   const loaction = useLocation();
   const { state } = loaction;
   const navigate = useNavigate();
+  const [fieldValid, setFieldValid] = useState(null);
+  const [showsuccess, setShowsuccess] = useState(null);
   const { Data, Err, isloading, optionData } = useApiFetch(
     `http://localhost:3600/posts/${state.id}`,
     "PATCH"
@@ -25,7 +25,17 @@ const Editpost = () => {
   }, [state]);
   const submitHandle = (e) => {
     e.preventDefault();
+    setFieldValid(null);
+    if (!createdpost.title) {
+      setFieldValid("Title should not be empty");
+      return;
+    }
+    if (!createdpost.body) {
+      setFieldValid("Content should not be empty");
+      return;
+    }
     optionData(createdpost);
+    setShowsuccess("Update succesfully !");
   };
   useEffect(() => {
     if (Data.length !== 0) {
@@ -75,8 +85,10 @@ const Editpost = () => {
               {showsuccess}
             </div>
           )}
-          <div className="btns">
-            <button type="submit">Create</button>
+          <div>
+            <button className="btn create-btn" type="submit">
+              Update
+            </button>
           </div>
         </form>
       </div>
