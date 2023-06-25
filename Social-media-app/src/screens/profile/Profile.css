@@ -22,3 +22,6 @@
 .profile .btn:hover {
   background-color: red;
 }
+.profile .btn-close {
+  box-shadow: none;
+}

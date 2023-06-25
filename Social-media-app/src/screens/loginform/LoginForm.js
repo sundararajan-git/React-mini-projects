@@ -3,7 +3,7 @@ import useApiFetch from "../../hook/UseApiFetch";
 import "./LoginForm.css";
 import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({ setusername }) => {
   // eslint-disable-next-line
   const [form, setForm] = useState({
     email: "",
@@ -21,7 +21,7 @@ const LoginForm = () => {
     if (form.email && form.password) {
       Data.map((item) => {
         if (item.email === form.email && item.password === form.password) {
-          optionData({ user: form.email.split("@")[0] });
+          setusername(form.email.split("@")[0]);
           navigate("/profile");
         }
       });

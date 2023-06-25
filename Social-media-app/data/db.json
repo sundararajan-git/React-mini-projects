@@ -1,51 +1,44 @@
 {
   "posts": [
     {
-      "title": "Elit dicta corrupti",
-      "body": "Quas suscipit dolore",
-      "username": "fugisudo",
+      "title": "Et consequat Labore",
+      "body": "Ut qui porro sed ali",
+      "username": "max123",
       "id": 1
     },
     {
-      "title": "Sunt fugiat neque l",
-      "body": "Et qui dolores est d",
-      "username": "fugisudo",
+      "title": "Sed ut doloribus nat",
+      "body": "Ullamco ut reprehend",
+      "username": "max123",
       "id": 2
     },
     {
-      "title": "Fugiat est aut temp",
-      "body": "Quo qui quibusdam no",
-      "username": null,
+      "title": "Nesciunt repudianda",
+      "body": "Laudantium impedit",
+      "username": "ben",
       "id": 3
     },
     {
-      "title": "Dolorem mollit volup",
-      "body": "Error ut vel laboris",
-      "username": "hari",
+      "title": "Aut quia consectetur",
+      "body": "Veniam laborum dict",
+      "username": "ben",
       "id": 4
     }
   ],
   "usres": [
     {
-      "email": "fugisudo@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "confirmPassword": "Pa$$w0rd!",
-      "username": "fugisudo",
+      "email": "max123@gamil.com",
+      "password": "max123",
+      "confirmPassword": "max123",
+      "username": "max123",
       "id": 1
     },
     {
-      "email": "xesytog@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "confirmPassword": "Pa$$w0rd!",
-      "username": "xesytog",
+      "email": "ben@gmail.com",
+      "password": "ben12",
+      "confirmPassword": "ben12",
+      "username": "ben",
       "id": 2
-    },
-    {
-      "email": "qutovibaq@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "confirmPassword": "Pa$$w0rd!",
-      "username": "qutovibaq",
-      "id": 3
     }
   ]
 }

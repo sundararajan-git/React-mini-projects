@@ -12,7 +12,7 @@ import LoginForm from "./screens/loginform/LoginForm";
 import useApiFetch from "./hook/UseApiFetch";
 
 const App = () => {
-  const [username, setusername] = useState("Arun");
+  const [username, setusername] = useState(null);
   return (
     <div>
       <Header />

@@ -13,7 +13,7 @@ const Posts = ({ item }) => {
         <h5 className="card-header">{item.title}</h5>
         <div className="card-body">
           <p className="card-text">{item.body}</p>
-          <pre>{item.username}</pre>
+          <pre>by {item.username ? item.username : "unknown"}</pre>
           <button onClick={passPost} className="btn ">
             More
           </button>
