@@ -4,8 +4,12 @@ import API_URL from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import "./Createpost.css";
 
-const CreatePost = () => {
-  const [createdpost, setCreatedpost] = useState({ title: "", body: "" });
+const CreatePost = ({ username }) => {
+  const [createdpost, setCreatedpost] = useState({
+    title: "",
+    body: "",
+    username: "",
+  });
   const [fieldValid, setFieldValid] = useState(null);
   const [showsuccess, setShowsuccess] = useState(null);
   const navigate = useNavigate();
@@ -57,7 +61,11 @@ const CreatePost = () => {
               id="content"
               rows={5}
               onChange={(e) =>
-                setCreatedpost({ ...createdpost, body: e.target.value })
+                setCreatedpost({
+                  ...createdpost,
+                  body: e.target.value,
+                  username: username,
+                })
               }
               value={createdpost.body}
             ></textarea>

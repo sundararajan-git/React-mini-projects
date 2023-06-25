@@ -36,7 +36,7 @@ const Showpost = () => {
         <div className="card-body">
           <h5 className="card-title">{state.title}</h5>
           <p className="card-text">{state.body}</p>
-          <pre>by Arun</pre>
+          <pre>{state.username}</pre>
           <br />
           <br />
           <button className="btn" onClick={backHandle}>

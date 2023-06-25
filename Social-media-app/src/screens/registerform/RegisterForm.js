@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { auth, googleProvider } from "./firebase";
 import { signInWithPopup } from "firebase/auth";
+import useApiFetch from "../../hook/UseApiFetch";
 import "./RegisterForm.css";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   // eslint-disable-next-line
@@ -16,25 +18,43 @@ const RegisterForm = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    username: "",
   });
   const [valid, setvalid] = useState(false);
   const [login, setLogin] = useState(false);
-  const clickHandle = () => {
+  const navigate = useNavigate();
+  const { Data, Err, isloading, optionData } = useApiFetch(
+    "http://localhost:3600/usres",
+    "POST"
+  );
+  const clickHandle = (e) => {
+    e.preventDefault();
     setvalid(true);
     if (form.email && form.password && form.password === form.confirmPassword) {
-      console.log(form);
+      optionData(form);
     }
   };
+  useEffect(() => {
+    if (Data.length !== 0) {
+      navigate("/login");
+    }
+  }, [Data]);
   return (
     <div>
-      <div className="RegisterForm">
-        <form onSubmit={(e) => e.preventDefault()} className="form">
+      <div className="RegisterForm" id="register">
+        <form onSubmit={clickHandle} className="form">
           <label htmlFor="email">Email</label>
           <input
             type="text"
             id="email"
             placeholder="Email..."
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                email: e.target.value,
+                username: e.target.value.split("@")[0],
+              })
+            }
           />
           {valid ? (
             form.email ? (
@@ -67,7 +87,10 @@ const RegisterForm = () => {
             id="confirm-password"
             placeholder="Confirm-Password..."
             onChange={(e) =>
-              setForm({ ...form, confirmPassword: e.target.value })
+              setForm({
+                ...form,
+                confirmPassword: e.target.value,
+              })
             }
           />
           {valid ? (
@@ -83,7 +106,7 @@ const RegisterForm = () => {
             <img src="https://banner2.cleanpng.com/20180521/ers/kisspng-google-logo-5b02bbe1d5c6e0.2384399715269058258756.jpg"></img>
           </div>
           <pre> </pre>
-          <button type="submit" id="login-btn" onClick={clickHandle}>
+          <button type="submit" id="login-btn">
             Register
           </button>
         </form>

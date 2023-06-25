@@ -1,24 +1,51 @@
 {
   "posts": [
     {
-      "title": "Ut error accusamus e",
-      "body": "Magni quo in optio ",
+      "title": "Elit dicta corrupti",
+      "body": "Quas suscipit dolore",
+      "username": "fugisudo",
       "id": 1
     },
     {
-      "title": "Enim distinctio Rer",
-      "body": "Consectetur quia ad",
+      "title": "Sunt fugiat neque l",
+      "body": "Et qui dolores est d",
+      "username": "fugisudo",
       "id": 2
     },
     {
-      "title": "Animi officia et qu",
-      "body": "In nihil laborum Ve",
+      "title": "Fugiat est aut temp",
+      "body": "Quo qui quibusdam no",
+      "username": null,
       "id": 3
     },
     {
-      "title": "Dolorum et minim atq",
-      "body": "Assumenda fugiat au",
+      "title": "Dolorem mollit volup",
+      "body": "Error ut vel laboris",
+      "username": "hari",
       "id": 4
+    }
+  ],
+  "usres": [
+    {
+      "email": "fugisudo@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "confirmPassword": "Pa$$w0rd!",
+      "username": "fugisudo",
+      "id": 1
+    },
+    {
+      "email": "xesytog@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "confirmPassword": "Pa$$w0rd!",
+      "username": "xesytog",
+      "id": 2
+    },
+    {
+      "email": "qutovibaq@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "confirmPassword": "Pa$$w0rd!",
+      "username": "qutovibaq",
+      "id": 3
     }
   ]
 }

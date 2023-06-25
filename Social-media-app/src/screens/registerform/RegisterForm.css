@@ -1,11 +1,11 @@
-.RegisterForm {
+#register {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   border-radius: 5px;
 }
-.form {
+.RegisterForm .form {
   width: 330px;
   height: 444px;
   border: 3px solid red;

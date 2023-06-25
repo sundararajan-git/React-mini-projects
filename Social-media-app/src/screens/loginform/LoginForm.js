@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import useApiFetch from "../../hook/UseApiFetch";
 import "./LoginForm.css";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   // eslint-disable-next-line
@@ -8,15 +10,26 @@ const LoginForm = () => {
     password: "",
   });
   const [valid, setvalid] = useState(false);
+  const navigate = useNavigate();
+  const { Data, Err, isloading } = useApiFetch(
+    "http://localhost:3600/usres",
+    "GET"
+  );
+  const { optionData } = useApiFetch("http://localhost:3600/login", "PATCH");
   const clickHandle = () => {
     setvalid(true);
     if (form.email && form.password) {
-      console.log(form);
+      Data.map((item) => {
+        if (item.email === form.email && item.password === form.password) {
+          optionData({ user: form.email.split("@")[0] });
+          navigate("/profile");
+        }
+      });
     }
   };
   return (
     <>
-      <div className="RegisterForm">
+      <div className="loginForm">
         <form onSubmit={(e) => e.preventDefault()} className="form">
           <label htmlFor="email">Email</label>
           <input
