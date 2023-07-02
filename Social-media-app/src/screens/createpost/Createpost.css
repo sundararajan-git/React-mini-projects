@@ -1,6 +1,9 @@
 .form-control:focus {
-  border-color: red;
+  border: 1.5px solid red;
   box-shadow: none;
+}
+.form-control {
+  border: 1px solid black;
 }
 .create-btn {
   float: right;
@@ -20,4 +23,10 @@
 .alert-success {
   color: green;
   border: 1px solid green;
+}
+.darkform form {
+  min-height: 100vh;
+}
+.darkform button {
+  background-color: red;
 }

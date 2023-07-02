@@ -8,3 +8,9 @@
 .card .btns button {
   margin-left: 10px;
 }
+.cardcontainer {
+  min-height: 100vh;
+}
+.card-title {
+  color: red;
+}

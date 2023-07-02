@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Editpost.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useFirestore } from "../../hook/useFirestore";
+import { useThemeContext } from "../../hook/useThemeContext";
 
 const Editpost = () => {
   const [createdpost, setCreatedpost] = useState({
@@ -37,9 +38,10 @@ const Editpost = () => {
       navigate("/");
     }, 800);
   };
+  const { theme } = useThemeContext();
   return (
     <div>
-      <div className="container">
+      <div className={`container ${theme}form`}>
         <form onSubmit={submitHandle}>
           <div className="form-group">
             <label htmlFor="title">Tittle</label>

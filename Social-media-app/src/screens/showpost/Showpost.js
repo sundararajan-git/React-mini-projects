@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./Showpost.css";
 import { useFirestore } from "../../hook/useFirestore";
 import { useAuthContext } from "../../hook/useAuthcontext";
+import { useThemeContext } from "../../hook/useThemeContext";
 
 const Showpost = () => {
   const [del, setDel] = useState(false);
@@ -14,7 +15,9 @@ const Showpost = () => {
   const deleteHandle = (id) => {
     setDel(true);
     deleteDocument(id);
-    navigate("/");
+    setTimeout(() => {
+      navigate("/");
+    });
   };
   const editHandle = () => {
     navigate(`/editpost/${state.id}`, { state: state });
@@ -22,9 +25,10 @@ const Showpost = () => {
   const backHandle = () => {
     navigate("/");
   };
+  const { theme } = useThemeContext();
   return (
-    <div className="container">
-      <div className="card">
+    <div className="container cardcontainer">
+      <div className={`card  ${theme}card`}>
         <div className="card-body">
           <h5 className="card-title">{state.title}</h5>
           <p className="card-text">{state.body}</p>

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import { useAuthentication } from "../../hook/useAuthentication";
 import { AuthContext } from "../../context/AuthContext";
+import { useThemeContext } from "../../hook/useThemeContext";
 
 const Profile = () => {
   const [db, setDb] = useState([
@@ -14,6 +15,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const state = useContext(AuthContext);
   const { logout } = useAuthentication();
+  const { theme } = useThemeContext();
   useEffect(() => {
     setnum(Math.floor(Math.random() * db.length));
   }, []);
@@ -24,7 +26,7 @@ const Profile = () => {
     }
   };
   return (
-    <div className="profile">
+    <div className={`profile  ${theme}profile`}>
       <div>
         <img src={db[num]} title="db" />
         <p>{state.user.email.split("@")[0]}</p>

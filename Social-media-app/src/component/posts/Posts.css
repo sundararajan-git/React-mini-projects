@@ -1,5 +1,8 @@
 .card {
-  margin-bottom: 25px;
+  margin-top: 25px;
+}
+.card-header {
+  color: royalblue;
 }
 .card pre {
   float: right;
@@ -18,4 +21,21 @@
   float: right;
   font-size: 12px;
   margin-right: 10px;
+  color: green;
+}
+.darkcard {
+  background-color: rgb(32, 33, 36);
+  color: white;
+  border: 1px solid white;
+}
+.darkcard .card-header {
+  border-bottom: 1px solid white;
+}
+.darkcard button {
+  background-color: red;
+}
+@media all and (max-width: 400px) {
+  .card-header small {
+    font-size: 10px;
+  }
 }

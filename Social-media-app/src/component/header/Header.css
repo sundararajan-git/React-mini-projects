@@ -9,7 +9,6 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  margin-bottom: 40px;
   overflow: hidden;
 }
 nav h1 {
@@ -36,9 +35,41 @@ nav ul a:hover {
   color: white;
   background-color: black;
 }
-@media all and (max-width: 400px) {
+@media all and (max-width: 500px) {
   nav ul {
-    gap: 8px;
+    gap: 5px;
     font-size: 13px;
   }
+  nav ul a {
+    padding: 10px;
+  }
+}
+@media all and (max-width: 350px) {
+  nav ul {
+    gap: 10px;
+    font-size: 10px;
+  }
+  nav ul a {
+    padding: 5px;
+  }
+}
+
+.redheader {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 255, 33, 1) 76%
+  );
+}
+.theme:hover {
+  background-color: transparent;
+}
+.header {
+  height: 70px;
+  position: sticky;
+  top: 0;
+}
+.darkheader {
+  background: red;
 }

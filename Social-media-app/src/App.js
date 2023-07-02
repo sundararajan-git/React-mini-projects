@@ -10,12 +10,13 @@ import Editpost from "./screens/editpost/Editpost";
 import RegisterForm from "./screens/registerform/RegisterForm";
 import LoginForm from "./screens/loginform/LoginForm";
 import { useAuthContext } from "./hook/useAuthcontext";
+import { useThemeContext } from "./hook/useThemeContext";
 
 const App = () => {
-  const [username, setusername] = useState(null);
   const { user, isAuthReady } = useAuthContext();
+  const { theme } = useThemeContext();
   return (
-    <div>
+    <div className={`${theme}body`}>
       <Header />
       {isAuthReady && (
         <Routes>

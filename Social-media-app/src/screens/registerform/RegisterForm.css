@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  min-height: 95vh;
   border-radius: 5px;
 }
 .RegisterForm .form {

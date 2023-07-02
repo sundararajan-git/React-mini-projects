@@ -4,6 +4,7 @@ import "./Createpost.css";
 import { useFirestore } from "../../hook/useFirestore";
 import { useAuthContext } from "../../hook/useAuthcontext";
 import { AuthContext } from "../../context/AuthContext";
+import { useThemeContext } from "../../hook/useThemeContext";
 
 const CreatePost = () => {
   const [createdpost, setCreatedpost] = useState({
@@ -17,6 +18,7 @@ const CreatePost = () => {
   const navigate = useNavigate();
   const { user } = useAuthContext();
   const state = useContext(AuthContext);
+  const { theme } = useThemeContext();
   const submitHandle = async (e) => {
     e.preventDefault();
     setFieldValid(null);
@@ -36,7 +38,7 @@ const CreatePost = () => {
   };
   return (
     <div>
-      <div className="container">
+      <div className={`container  ${theme}form`}>
         <form onSubmit={submitHandle}>
           <div className="form-group">
             <label htmlFor="title">Tittle</label>
