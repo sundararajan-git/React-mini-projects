@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import useApiFetch from "../../hook/UseApiFetch";
+import React, { useState } from "react";
 import "./LoginForm.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthentication } from "../../hook/useAuthentication";
 
-const LoginForm = ({ setusername }) => {
+const LoginForm = () => {
   // eslint-disable-next-line
   const [form, setForm] = useState({
     email: "",
@@ -11,20 +11,11 @@ const LoginForm = ({ setusername }) => {
   });
   const [valid, setvalid] = useState(false);
   const navigate = useNavigate();
-  const { Data, Err, isloading } = useApiFetch(
-    "http://localhost:3600/usres",
-    "GET"
-  );
-  const { optionData } = useApiFetch("http://localhost:3600/login", "PATCH");
+  const { err, logIn } = useAuthentication();
   const clickHandle = () => {
     setvalid(true);
     if (form.email && form.password) {
-      Data.map((item) => {
-        if (item.email === form.email && item.password === form.password) {
-          setusername(form.email.split("@")[0]);
-          navigate("/profile");
-        }
-      });
+      logIn(form);
     }
   };
   return (
@@ -54,9 +45,9 @@ const LoginForm = ({ setusername }) => {
             placeholder="Password..."
             onChange={(e) => setForm({ ...form, password: e.target.value })}
           />
-          {valid ? (
+          {valid || err ? (
             form.password ? (
-              <pre> </pre>
+              <pre>{err ? err : null} </pre>
             ) : (
               <pre id="pre">Please enter your password...</pre>
             )
@@ -66,6 +57,9 @@ const LoginForm = ({ setusername }) => {
           <button type="submit" id="login-btn" onClick={clickHandle}>
             Login
           </button>
+          <section>
+            You have account ? <Link to="/register">Register</Link>
+          </section>
         </form>
       </div>
     </>

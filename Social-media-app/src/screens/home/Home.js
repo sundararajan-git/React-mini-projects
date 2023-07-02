@@ -1,15 +1,20 @@
 import React from "react";
 import Posts from "../../component/posts/Posts";
-import useApiFetch from "../../hook/UseApiFetch";
-import API_URL from "../../api/api";
-const Home = ({ username }) => {
-  const { Data, Err, isloading, optionData } = useApiFetch(API_URL, "GET");
+import { useFetchCollection } from "../../hook/useFetchCollection";
+import "./Home.css";
+
+const Home = () => {
+  const { documents: post, isloading } = useFetchCollection("posts");
   return (
     <div>
-      {isloading && <p>Loading...</p>}
-      {Err && <p>{Err}</p>}
-      {[...Data].reverse().map((item) => {
-        return <Posts item={item} key={item.id} username={username} />;
+      {isloading && (
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      )}
+      {/* {Err && <p>{Err}</p>} */}
+      {post.map((item) => {
+        return <Posts item={item} key={item.id} />;
       })}
     </div>
   );

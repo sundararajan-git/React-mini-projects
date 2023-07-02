@@ -1,44 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { auth, googleProvider } from "./firebase";
-import { signInWithPopup } from "firebase/auth";
-import useApiFetch from "../../hook/UseApiFetch";
 import "./RegisterForm.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthentication } from "../../hook/useAuthentication";
 
 const RegisterForm = () => {
   // eslint-disable-next-line
   const [loginuser, setLoginuser] = useState(null);
-  const googleLogin = () => {
-    signInWithPopup(auth, googleProvider).then((data) => {
-      setLoginuser(data.user.email);
-      console.log(data.user.email);
-    });
-  };
+
   const [form, setForm] = useState({
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
-    username: "",
   });
   const [valid, setvalid] = useState(false);
-  const [login, setLogin] = useState(false);
   const navigate = useNavigate();
-  const { Data, Err, isloading, optionData } = useApiFetch(
-    "http://localhost:3600/usres",
-    "POST"
-  );
+  const { err, register } = useAuthentication();
   const clickHandle = (e) => {
     e.preventDefault();
     setvalid(true);
     if (form.email && form.password && form.password === form.confirmPassword) {
-      optionData(form);
+      register(form);
     }
   };
-  useEffect(() => {
-    if (Data.length !== 0) {
-      navigate("/login");
-    }
-  }, [Data]);
   return (
     <div>
       <div className="RegisterForm" id="register">
@@ -93,22 +77,21 @@ const RegisterForm = () => {
               })
             }
           />
-          {valid ? (
+          {valid || err ? (
             !form.confirmPassword || form.password !== form.confirmPassword ? (
               <pre id="pre">Please enter your confirmPassword...</pre>
             ) : (
-              <pre> </pre>
+              <pre>{err && err} </pre>
             )
           ) : (
-            <pre> </pre>
+            <pre></pre>
           )}
-          <div onClick={googleLogin} id="g-btn" role="button">
-            <img src="https://banner2.cleanpng.com/20180521/ers/kisspng-google-logo-5b02bbe1d5c6e0.2384399715269058258756.jpg"></img>
-          </div>
-          <pre> </pre>
-          <button type="submit" id="login-btn">
+          <button type="submit" id="register-btn">
             Register
           </button>
+          <section>
+            You have account ? <Link to="/login">Login</Link>
+          </section>
         </form>
       </div>
     </div>

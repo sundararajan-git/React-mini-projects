@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Editpost.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import useApiFetch from "../../hook/UseApiFetch";
+import { useFirestore } from "../../hook/useFirestore";
 
 const Editpost = () => {
   const [createdpost, setCreatedpost] = useState({
@@ -14,10 +14,7 @@ const Editpost = () => {
   const navigate = useNavigate();
   const [fieldValid, setFieldValid] = useState(null);
   const [showsuccess, setShowsuccess] = useState(null);
-  const { Data, Err, isloading, optionData } = useApiFetch(
-    `http://localhost:3600/posts/${state.id}`,
-    "PATCH"
-  );
+  const { updateDocument } = useFirestore("posts");
   useEffect(() => {
     if (state) {
       setCreatedpost({ title: state.title, body: state.body });
@@ -34,17 +31,12 @@ const Editpost = () => {
       setFieldValid("Content should not be empty");
       return;
     }
-    optionData(createdpost);
     setShowsuccess("Update succesfully !");
+    updateDocument(state.id, createdpost);
+    setTimeout(() => {
+      navigate("/");
+    }, 800);
   };
-  useEffect(() => {
-    if (Data.length !== 0) {
-      const timer = setTimeout(() => {
-        navigate("/");
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [Data]);
   return (
     <div>
       <div className="container">
@@ -75,6 +67,12 @@ const Editpost = () => {
             ></textarea>
           </div>
           <br />
+          <div>
+            <button className="btn create-btn" type="submit">
+              Update
+            </button>
+          </div>
+          <br />
           {fieldValid && (
             <div className="alert alert-danger" role="alert">
               {fieldValid}
@@ -85,11 +83,6 @@ const Editpost = () => {
               {showsuccess}
             </div>
           )}
-          <div>
-            <button className="btn create-btn" type="submit">
-              Update
-            </button>
-          </div>
         </form>
       </div>
     </div>

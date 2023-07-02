@@ -1,20 +1,23 @@
-import React, { useEffect, useState } from "react";
-import useApiFetch from "../../hook/UseApiFetch";
-import API_URL from "../../api/api";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Createpost.css";
+import { useFirestore } from "../../hook/useFirestore";
+import { useAuthContext } from "../../hook/useAuthcontext";
+import { AuthContext } from "../../context/AuthContext";
 
-const CreatePost = ({ username }) => {
+const CreatePost = () => {
   const [createdpost, setCreatedpost] = useState({
     title: "",
     body: "",
     username: "",
   });
+  const { addDocument, err, isloading } = useFirestore("posts");
   const [fieldValid, setFieldValid] = useState(null);
   const [showsuccess, setShowsuccess] = useState(null);
   const navigate = useNavigate();
-  const { Data, Err, isloading, optionData } = useApiFetch(API_URL, "POST");
-  const submitHandle = (e) => {
+  const { user } = useAuthContext();
+  const state = useContext(AuthContext);
+  const submitHandle = async (e) => {
     e.preventDefault();
     setFieldValid(null);
     if (!createdpost.title) {
@@ -25,18 +28,12 @@ const CreatePost = ({ username }) => {
       setFieldValid("Content should not be empty");
       return;
     }
-    optionData(createdpost);
     setShowsuccess("Created succesfully !");
+    addDocument(createdpost);
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   };
-  useEffect(() => {
-    if (Data.length !== 0) {
-      const timer = setTimeout(() => {
-        setCreatedpost({ title: "", body: "" });
-        navigate("/");
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [Data]);
   return (
     <div>
       <div className="container">
@@ -48,7 +45,11 @@ const CreatePost = ({ username }) => {
               id="title"
               className="form-control"
               onChange={(e) =>
-                setCreatedpost({ ...createdpost, title: e.target.value })
+                setCreatedpost({
+                  ...createdpost,
+                  title: e.target.value,
+                  userId: user.uid,
+                })
               }
               value={createdpost.title}
             />
@@ -64,11 +65,17 @@ const CreatePost = ({ username }) => {
                 setCreatedpost({
                   ...createdpost,
                   body: e.target.value,
-                  username: username,
+                  username: state.user.email.split("@")[0],
                 })
               }
               value={createdpost.body}
             ></textarea>
+          </div>
+          <br />
+          <div>
+            <button className=" btn create-btn" type="submit">
+              Create
+            </button>
           </div>
           <br />
           {fieldValid && (
@@ -81,11 +88,6 @@ const CreatePost = ({ username }) => {
               {showsuccess}
             </div>
           )}
-          <div>
-            <button className=" btn create-btn" type="submit">
-              Create
-            </button>
-          </div>
         </form>
       </div>
     </div>

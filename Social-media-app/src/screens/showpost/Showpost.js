@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import useApiFetch from "../../hook/UseApiFetch";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Showpost.css";
+import { useFirestore } from "../../hook/useFirestore";
+import { useAuthContext } from "../../hook/useAuthcontext";
 
 const Showpost = () => {
   const [del, setDel] = useState(false);
   const navigate = useNavigate();
   const loaction = useLocation();
   const { state } = loaction;
-  const { Data, Err, isloading, optionData } = useApiFetch(
-    `http://localhost:3600/posts/${state.id}`,
-    "DELETE"
-  );
-  const deleteHandle = () => {
+  const { user } = useAuthContext();
+  const { err, deleteDocument } = useFirestore("posts");
+  const deleteHandle = (id) => {
     setDel(true);
-    optionData();
+    deleteDocument(id);
+    navigate("/");
   };
   const editHandle = () => {
     navigate(`/editpost/${state.id}`, { state: state });
@@ -22,14 +22,6 @@ const Showpost = () => {
   const backHandle = () => {
     navigate("/");
   };
-  useEffect(() => {
-    if (Data.length !== 0) {
-      const timer = setTimeout(() => {
-        navigate("/");
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [Data]);
   return (
     <div className="container">
       <div className="card">
@@ -42,14 +34,18 @@ const Showpost = () => {
           <button className="btn" onClick={backHandle}>
             Back
           </button>
-          <div className="btns">
-            <button onClick={editHandle} className="btn">
-              Edit
-            </button>
-            <button onClick={deleteHandle} className="btn">
-              Delete
-            </button>
-          </div>
+          {user.uid === state.userId && (
+            <>
+              <div className="btns">
+                <button onClick={editHandle} className="btn">
+                  Edit
+                </button>
+                <button onClick={() => deleteHandle(state.id)} className="btn">
+                  Delete
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
       <br />
@@ -58,6 +54,7 @@ const Showpost = () => {
           Deleted Successfully !
         </div>
       )}
+      {err && <p>Data is not recived...</p>}
     </div>
   );
 };
