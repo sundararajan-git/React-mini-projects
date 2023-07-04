@@ -9,6 +9,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 50px;
+  z-index: 999;
   overflow: hidden;
 }
 nav h1 {
