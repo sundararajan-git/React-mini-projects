@@ -17,7 +17,7 @@ const Showpost = () => {
     deleteDocument(id);
     setTimeout(() => {
       navigate("/");
-    });
+    }, 500);
   };
   const editHandle = () => {
     navigate(`/editpost/${state.id}`, { state: state });

@@ -17,6 +17,7 @@ nav h1 {
   color: white;
   margin-top: 10px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  cursor: pointer;
 }
 nav ul {
   display: flex;
