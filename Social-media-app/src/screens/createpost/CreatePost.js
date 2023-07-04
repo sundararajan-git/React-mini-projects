@@ -12,7 +12,7 @@ const CreatePost = () => {
     body: "",
     username: "",
   });
-  const { addDocument, err, isloading } = useFirestore("posts");
+  const { addDocument } = useFirestore("posts");
   const [fieldValid, setFieldValid] = useState(null);
   const [showsuccess, setShowsuccess] = useState(null);
   const navigate = useNavigate();
