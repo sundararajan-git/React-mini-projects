@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 95vh;
+  min-height: 80vh;
   border-radius: 5px;
 }
 .loginForm .form {
@@ -47,4 +47,9 @@ pre {
 section {
   text-align: center;
   margin-top: 20px;
+}
+@media all and (max-width: 350px) {
+  .loginForm .form {
+    margin: 15px;
+  }
 }

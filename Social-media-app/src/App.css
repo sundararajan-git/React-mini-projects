@@ -4,13 +4,20 @@
   box-sizing: border-box;
   overflow: scroll;
 }
-body {
-  min-height: 100vh;
-}
 *::-webkit-scrollbar {
   display: none;
 }
 .darkbody {
   background-color: rgb(32, 33, 36);
   color: white;
+  min-height: 100vh;
+}
+#center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+#notfound {
+  width: 50%;
 }

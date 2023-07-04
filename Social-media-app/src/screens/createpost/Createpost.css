@@ -24,9 +24,6 @@
   color: green;
   border: 1px solid green;
 }
-.darkform form {
-  min-height: 100vh;
-}
 .darkform button {
   background-color: red;
 }

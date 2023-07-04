@@ -14,7 +14,7 @@ const Posts = ({ item }) => {
     <div className="container">
       <div className={`card  ${theme}card`}>
         <h5 className="card-header">
-          {item.title}
+          <span>{item.title}</span>
           <small>
             <i>
               {item.createdAt && moment(item.createdAt.toDate()).calendar()}

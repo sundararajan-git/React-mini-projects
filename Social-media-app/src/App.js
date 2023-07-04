@@ -48,6 +48,18 @@ const App = () => {
             path="/register"
             element={!user ? <RegisterForm /> : <Navigate to={"/login"} />}
           />
+          <Route
+            path="*"
+            element={
+              <div id="center">
+                <img
+                  src="https://img.freepik.com/free-vector/error-404-concept-illustration_114360-1811.jpg?w=996&t=st=1688481550~exp=1688482150~hmac=7d9240ef2dd237fd8ce433455222cb295b50c761e7dc2c8f667dbfe74f623df8"
+                  alt="404"
+                  id="notfound"
+                />
+              </div>
+            }
+          />
         </Routes>
       )}
     </div>

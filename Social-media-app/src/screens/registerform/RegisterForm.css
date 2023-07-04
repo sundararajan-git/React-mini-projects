@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 95vh;
+  min-height: 80vh;
   border-radius: 5px;
 }
 .RegisterForm .form {
@@ -50,4 +50,9 @@ img {
   object-fit: contain;
   background-color: transparent;
   border-radius: 5px;
+}
+@media all and (max-width: 350px) {
+  .RegisterForm .form {
+    margin: 15px;
+  }
 }

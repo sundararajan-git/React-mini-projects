@@ -1,8 +1,13 @@
 .card {
   margin-bottom: 25px;
+  border: 1px solid gray;
 }
 .card-header {
   color: royalblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid gray;
 }
 .card pre {
   float: right;
@@ -36,6 +41,16 @@
 }
 @media all and (max-width: 400px) {
   .card-header small {
+    font-size: 10px;
+  }
+}
+@media all and (max-width: 500px) {
+  .card-header span {
+    font-size: 15px;
+  }
+}
+@media all and (max-width: 350px) {
+  .card-header span {
     font-size: 10px;
   }
 }
